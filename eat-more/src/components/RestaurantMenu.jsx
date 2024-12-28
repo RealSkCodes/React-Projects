@@ -13,7 +13,9 @@ const RestaurantMenu = () => {
   const [restaurantData, setRestaurantData] = useState({})
   const [dishes, setDishes] = useState([])
 
-  const rawData = useFetchedData("https://eat-more-api.vercel.app/api/swiggyMainApi" + restId)
+  const rawData = useFetchedData(
+    `https://eat-more-api.vercel.app/api/swiggyRestDataApi?restId=${restId}`
+  )
 
   useEffect(() => {
     if (rawData?.data) {
