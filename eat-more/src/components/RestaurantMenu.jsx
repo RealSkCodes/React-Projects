@@ -1,6 +1,6 @@
 import { useParams } from "react-router"
 import { useState, useEffect, useContext } from "react"
-import { SWIGGY_IMAGE_API, SWIGGY_REST_DATA_API } from "../constants.js"
+import { SWIGGY_IMAGE_API, NEW_URL } from "../constants.js"
 import useFetchedData from "../utils/useFetchedData.js"
 import Card from "./Card.jsx"
 import Button from "./Button.jsx"
@@ -13,9 +13,7 @@ const RestaurantMenu = () => {
   const [restaurantData, setRestaurantData] = useState({})
   const [dishes, setDishes] = useState([])
 
-  const rawData = useFetchedData(
-    `https://eat-more-api.vercel.app/api/swiggyRestDataApi?restId=${restId}`
-  )
+  const rawData = useFetchedData(NEW_URL + `/api/swiggyRestDataApi?restId=${restId}`)
 
   useEffect(() => {
     if (rawData?.data) {

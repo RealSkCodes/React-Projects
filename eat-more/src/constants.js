@@ -5,4 +5,7 @@ const SWIGGY_REST_DATA_API =
 
 const SWIGGY_IMAGE_API =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_30/v1660371606/"
-export { SWIGGY_MAIN_API, SWIGGY_IMAGE_API, SWIGGY_REST_DATA_API }
+
+// const NEW_URL = "http://localhost:3000/"
+const NEW_URL = "https://eat-more-api.vercel.app/"
+export { SWIGGY_MAIN_API, SWIGGY_IMAGE_API, SWIGGY_REST_DATA_API, NEW_URL }

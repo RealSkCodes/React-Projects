@@ -14,14 +14,18 @@
       "use": "@vercel/static-build"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/swiggyMainApi",
-      "dest": "api/swiggyMainApi.js"
+      "source": "/api/swiggyMainApi",
+      "destination": "/api/swiggyMainApi.js"
     },
     {
-      "src": "/api/swiggyRestDataApi",
-      "dest": "api/swiggyRestDataApi.js"
+      "source": "/api/swiggyRestDataApi",
+      "destination": "/api/swiggyRestDataApi.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

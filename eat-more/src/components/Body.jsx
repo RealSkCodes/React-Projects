@@ -3,7 +3,7 @@ import { Link } from "react-router"
 import SearchBar from "./SearchBar"
 import Card from "./Card"
 import useFetchedData from "../utils/useFetchedData.js"
-import { SWIGGY_MAIN_API, SWIGGY_IMAGE_API } from "../constants.js"
+import { SWIGGY_IMAGE_API, NEW_URL } from "../constants.js"
 
 const Body = () => {
   // Initial state for filtered Restaurant list and the text User will Search
@@ -11,7 +11,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("")
 
   // Calling the api
-  const rawData = useFetchedData("https://eat-more-api.vercel.app/api/swiggyMainApi")
+  const rawData = useFetchedData(NEW_URL + "/api/swiggyMainApi")
   const restaurantsList =
     rawData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []
 
