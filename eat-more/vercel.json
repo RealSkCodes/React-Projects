@@ -1,4 +1,10 @@
 {
+  "rewrites": [
+    {
+      "source": "/api/dapi/(.*)",
+      "destination": "https://www.swiggy.com/dapi/$1"
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",

@@ -1,7 +1,7 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 
-// https://vitejs.dev/config/
+// Vite config to handle proxying API calls in development
 export default defineConfig({
   plugins: [react()],
   server: {
