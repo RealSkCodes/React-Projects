@@ -1,5 +1,3 @@
-// const SWIGGY_MAIN_API =
-//   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.29844139999999&lng=77.99313599999999&page_type=MOBILE_WEB_LISTING"
 const SWIGGY_MAIN_API =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.57400&lng=88.31910&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
 const SWIGGY_IMAGE_API =
