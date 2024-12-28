@@ -9,7 +9,7 @@ const useFetchedData = (apiLink) => {
         method: "GET", // Using GET directly
         headers: {
           "Content-Type": "application/json",
-          Origin: "https://your-vercel-domain.vercel.app", // Adjust the origin as needed
+          Origin: "https://eat-more-rouge.vercel.app", // Adjust the origin as needed
           "X-Requested-With": "XMLHttpRequest",
         },
       })
