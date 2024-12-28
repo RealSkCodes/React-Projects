@@ -11,7 +11,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("")
 
   // Calling the api
-  const rawData = useFetchedData(SWIGGY_MAIN_API)
+  const rawData = useFetchedData("https://eat-more-api.vercel.app/api/swiggyMainApi")
   const restaurantsList =
     rawData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []
 
