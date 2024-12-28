@@ -17,15 +17,11 @@
   "routes": [
     {
       "src": "/api/swiggyMainApi",
-      "dest": "/api/swiggyMainApi.js"
+      "dest": "api/swiggyMainApi.js"
     },
     {
       "src": "/api/swiggyRestDataApi",
-      "dest": "/api/swiggyRestDataApi.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "api/swiggyRestDataApi.js"
     }
   ]
 }
