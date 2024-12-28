@@ -5,14 +5,7 @@ const useFetchedData = (apiLink) => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(apiLink, {
-        method: "GET", // Using GET directly
-        headers: {
-          "Content-Type": "application/json",
-          Origin: "https://eat-more-rouge.vercel.app", // Adjust the origin as needed
-          "X-Requested-With": "XMLHttpRequest",
-        },
-      })
+      const response = await fetch(apiLink)
 
       // Check if the response is successful
       if (!response.ok) {
