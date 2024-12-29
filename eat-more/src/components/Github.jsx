@@ -50,6 +50,21 @@ const Github = () => {
           View Profile on GitHub
         </a>
       </div>
+
+      {/* Project Link */}
+      <div className="mt-6">
+        <div className="text-orange-500 font-semibold text-lg">
+          Eat More Project Link -{" "}
+          <a
+            href="https://github.com/RealSkCodes/React-Projects/tree/main/eat-more"
+            target="_blank"
+            rel="noopener noreferrer"
+            className=" hover:text-pink-500 transition-colors duration-200 ease-in-out font-normal"
+          >
+            https://github.com/RealSkCodes/React-Projects/tree/main/eat-more
+          </a>
+        </div>
+      </div>
     </div>
   )
 }
