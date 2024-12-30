@@ -28,7 +28,7 @@ const Body = () => {
 
   return (
     <div className="flex flex-wrap flex-col w-4/5 mx-auto">
-      <h1 className="text-white text-2xl font-bold mx-3">Restaurants</h1>
+      <h1 className="text-green-950 text-2xl font-bold mx-3">Restaurants</h1>
       <SearchBar
         buttonName={"Search"}
         inputValue={searchText}
@@ -39,7 +39,7 @@ const Body = () => {
         {filteredList.map((restaurant) => (
           <Link to={"/restaurant/" + restaurant?.info?.id} key={restaurant?.info?.id}>
             <Card
-              imgSoruce={SWIGGY_IMAGE_API + restaurant?.info?.cloudinaryImageId}
+              imgSource={SWIGGY_IMAGE_API + restaurant?.info?.cloudinaryImageId}
               name={restaurant?.info?.name}
               rating={restaurant?.info?.avgRating}
               area={restaurant?.info?.locality + ", " + restaurant?.info?.areaName}

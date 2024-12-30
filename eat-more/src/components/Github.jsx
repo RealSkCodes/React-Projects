@@ -9,32 +9,32 @@ const Github = () => {
     userData || {}
 
   return (
-    <div className="bg-gray-900 text-white p-8 rounded-xl shadow-2xl max-w-2xl mx-auto space-y-6 fade-in">
+    <div className="bg-white text-gray-900 p-8 rounded-xl shadow-2xl max-w-2xl mx-auto space-y-6 fade-in">
       <div className="flex items-center space-x-6 slide-up">
         <img
           src={avatar_url}
           alt={`${login}'s Avatar`}
-          className="w-28 h-28 rounded-full border-4 border-gradient-to-r from-orange-400 to-pink-500 shadow-xl"
+          className="w-28 h-28 rounded-full border-4 border-gradient-to-r from-orange-400 to-green-500 shadow-xl"
         />
         <div className="space-y-2">
-          <h2 className="text-3xl font-extrabold text-gray-100">{login}</h2>
-          <p className="text-gray-400 text-lg">{name || "No name provided"}</p>
-          {bio && <p className="text-gray-300 text-sm mt-2 italic">{bio}</p>}
+          <h2 className="text-3xl font-extrabold text-green-950">{login}</h2>
+          <p className="text-gray-700 text-lg">{name || "No name provided"}</p>
+          {bio && <p className="text-gray-500 text-sm mt-2 italic">{bio}</p>}
         </div>
       </div>
 
       {/* Stats Section */}
       <div className="grid grid-cols-2 gap-4 text-sm mt-6 slide-up">
         <div className="flex items-center space-x-2">
-          <span className="font-semibold text-gray-300">Followers:</span>
+          <span className="font-semibold text-gray-600">Followers:</span>
           <span>{followers}</span>
         </div>
         <div className="flex items-center space-x-2">
-          <span className="font-semibold text-gray-300">Following:</span>
+          <span className="font-semibold text-gray-600">Following:</span>
           <span>{following}</span>
         </div>
         <div className="flex items-center space-x-2">
-          <span className="font-semibold text-gray-300">Public Repos:</span>
+          <span className="font-semibold text-gray-600">Public Repos:</span>
           <span>{public_repos}</span>
         </div>
       </div>
@@ -45,7 +45,7 @@ const Github = () => {
           href={html_url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-orange-500 hover:text-pink-500 transition-colors duration-200 ease-in-out font-semibold text-lg"
+          className="text-orange-500 hover:text-green-500 transition-colors duration-200 ease-in-out font-semibold text-lg"
         >
           View Profile on GitHub
         </a>
@@ -59,7 +59,7 @@ const Github = () => {
             href="https://github.com/RealSkCodes/React-Projects/tree/main/eat-more"
             target="_blank"
             rel="noopener noreferrer"
-            className=" hover:text-pink-500 transition-colors duration-200 ease-in-out font-normal"
+            className="hover:text-green-500 transition-colors duration-200 ease-in-out font-normal"
           >
             https://github.com/RealSkCodes/React-Projects/tree/main/eat-more
           </a>

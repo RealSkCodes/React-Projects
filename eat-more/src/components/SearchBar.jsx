@@ -9,7 +9,11 @@ const SearchBar = ({ onInputChange, inputValue, buttonName, onButtonClick }) => 
         onChange={onInputChange}
         value={inputValue}
       />
-      <Button name={buttonName} onclick={onButtonClick} />
+      <Button
+        name={buttonName}
+        onclick={onButtonClick}
+        addStyle="bg-green-950 text-white text-lg font-semibold"
+      />
     </div>
   )
 }

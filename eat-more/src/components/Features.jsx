@@ -2,7 +2,7 @@ import Section from "./Section.jsx"
 
 const Features = () => {
   return (
-    <div className="bg-[#2C3E50] p-10 h-3/5 w-3/5 mx-auto text-white shadow-[5px_5px_10px_3px_#141414] rounded-md">
+    <div className="bg-white p-10 h-3/5 w-3/5 mx-auto text-gray-900 shadow-[5px_5px_10px_3px_rgba(0,0,0,0.2)] rounded-md">
       <div className="max-w-4xl mx-auto">
         <Section
           title="About 'Eat More'"

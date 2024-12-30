@@ -17,7 +17,7 @@ const Navlist = () => {
           >
             <NavLink
               to={item.href}
-              className={({ isActive }) => (isActive ? "text-orange-400" : "text-white")}
+              className={({ isActive }) => (isActive ? "text-orange-400" : "text-green-950")}
             >
               {item.name}
             </NavLink>

@@ -12,7 +12,9 @@ const Section = ({ title, content, centerTitle = false }) => {
           {title}
         </h2>
       )}
-      {content && <p className="text-white text-lg leading-relaxed text-justify">{content}</p>}
+      {content && (
+        <p className="text-green-950 text-lg font-medium leading-relaxed text-justify">{content}</p>
+      )}
     </div>
   )
 }

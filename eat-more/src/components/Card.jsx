@@ -1,21 +1,33 @@
-const Card = ({ imgSoruce, name, rating, area = "", price = "", children }) => {
+const Card = ({ imgSource, name, rating, area = "", price = "", children }) => {
+  console.log(rating)
+
   return (
-    <div className="mx-3 my-3 flex flex-col justify-between bg-gray-800 min-w-40 h-[380px] p-2 rounded-lg shadow-[0px_10px_20px_0px_#141414]">
-      {imgSoruce && (
+    <div className="mx-3 my-1 border-gray-300 border-[1px] flex flex-col bg-gray-100 min-w-40 p-2 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+      {imgSource && (
         <img
-          className="w-full h-56 object-cover rounded-lg"
-          src={imgSoruce}
+          className="w-full h-56 object-cover rounded-2xl"
+          src={imgSource}
           alt="restaurant image"
         />
       )}
       {name && (
-        <span className="text-white my-1 font-bold text-xl">
-          {name.length >= 45 ? name.slice(0, 45) + "..." : name}
+        <span className="text-green-950 font-bold text-[1.1rem] mt-4 mb-1">
+          {name.length >= 27 ? name.slice(0, 27) + "..." : name}
         </span>
       )}
-      {rating && <h1 className="text-orange-400 font-bold text-md">Rating: {rating} / 5</h1>}
-      {area && <p className="text-blue-300 my-1">{area.toLowerCase()}</p>}
-      {price && <h1 className="text-orange-400 font-bold text-md">Price: {price}</h1>}
+      {rating && (
+        <h1 className="text-yellow-500 font-semibold">
+          {"⭐".repeat(rating) + " (" + rating + ")"}
+        </h1>
+      )}
+      {area && (
+        <p className="text-gray-600 font-semibold">
+          {area.length >= 27
+            ? area.slice(0, 1).toUpperCase() + area.slice(1).toLowerCase().slice(0, 27) + "..."
+            : area.slice(0, 1).toUpperCase() + area.slice(1).toLowerCase()}
+        </p>
+      )}
+      {price && <h1 className="text-orange-400 font-semibold text-lg">Price: {price}</h1>}
       {children}
     </div>
   )
