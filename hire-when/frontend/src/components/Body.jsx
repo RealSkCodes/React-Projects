@@ -1,0 +1,79 @@
+const Body = () => {
+  return (
+    <div className="w-full p-4 bg-background">
+      <h1 className="font-bold text-2xl text-text mb-3 font-notosans">Overview</h1>
+      <div className="grid grid-cols-12 text-center font-audiowide bg-accent text-gray-100 rounded-lg shadow-[3px_3px_8px_0px_rgba(0,0,0,0.8)] mb-2 border-gray-200 border-2">
+        <span className="border-r-2 border-gray-100 py-2 col-span-1">Company</span>
+        <span className="border-r-2 border-gray-100 py-2 col-span-2">Role</span>
+        <span className="border-r-2 border-gray-100 py-2 col-span-1">Area</span>
+        <span className="border-r-2 border-gray-100 py-2 col-span-2">Posted On</span>
+        <span className="border-r-2 border-gray-100 py-2 col-span-2">Submission Date</span>
+        <span className="border-r-2 border-gray-100 py-2 col-span-2">Status</span>
+        <span className="py-2 col-span-2">Source</span>
+      </div>
+      <div>
+        {[
+          {
+            id: 1,
+            company: "Google",
+            role: "Front-end dev",
+            area: "Mumbai",
+            posted: "25th dec, 2024",
+            submission: "29th dec, 2024",
+            status: "Pending",
+            source: "https://google.com",
+          },
+          {
+            id: 2,
+            company: "Facebook",
+            role: "Full Stack dev",
+            area: "Kolkata",
+            posted: "25th dec, 2024",
+            submission: "29th dec, 2024",
+            status: "Interview Pending",
+            source: "https://facebook.com",
+          },
+          {
+            id: 3,
+            company: "Facebook",
+            role: "Full Stack dev",
+            area: "Kolkata",
+            posted: "25th dec, 2024",
+            submission: "29th dec, 2024",
+            status: "Interview Pending",
+            source: "https://facebook.com",
+          },
+        ].map((detail) => {
+          return (
+            <div
+              className="grid grid-cols-12 text-center bg-purple-200 text-text font-semibold font-notosans rounded-lg overflow-hidden"
+              key={detail.id}
+            >
+              <span className="border-r-2 border-b-2 border-gray-100 py-2 col-span-1">
+                {detail.company}
+              </span>
+              <span className="border-r-2 border-b-2 border-gray-100 py-2 col-span-2">
+                {detail.role}
+              </span>
+              <span className="border-r-2 border-b-2 border-gray-100 py-2 col-span-1">
+                {detail.area}
+              </span>
+              <span className="border-r-2 border-b-2 border-gray-100 py-2 col-span-2">
+                {detail.posted}
+              </span>
+              <span className="border-r-2 border-b-2 border-gray-100 py-2 col-span-2">
+                {detail.submission}
+              </span>
+              <span className="border-r-2 border-b-2 border-gray-100 py-2 col-span-2">
+                {detail.status}
+              </span>
+              <span className="border-b-2 border-gray-100  py-2 col-span-2">{detail.source}</span>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+export default Body
