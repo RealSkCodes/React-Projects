@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 body {
-  background-image: url("./assets/images/download.svg");
-  background-size: cover; /* Optionally adjust background size */
-  background-position: center; /* Optionally adjust position */
+  @apply bg-background;
   @apply overflow-hidden;
 }

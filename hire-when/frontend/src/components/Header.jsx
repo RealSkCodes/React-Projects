@@ -2,7 +2,7 @@ import SearchBar from "./SearchBar.jsx"
 
 const Header = () => {
   return (
-    <div className="bg-background flex justify-between items-center border-b-[1px] border-gray-300">
+    <div className="bg-background grid grid-cols-3 items-center border-b-[1px] border-gray-300">
       <div className="flex items-center">
         <img
           className="w-8 rounded-md m-2 cursor-pointer "
@@ -18,7 +18,7 @@ const Header = () => {
         btnStyle="px-3 py-[6px] ml-0 rounded-r-[50px] border-none font-semibold bg-primary text-white"
       />
       <img
-        className="w-16 m-2 cursor-pointer drop-shadow-[3px_3px_2px_black]"
+        className="w-16 m-2 cursor-pointer drop-shadow-[3px_3px_2px_black] ml-auto"
         src="./assets/images/user-logo.png"
         alt="user logo"
       />
