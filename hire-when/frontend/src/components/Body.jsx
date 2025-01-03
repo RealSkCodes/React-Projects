@@ -1,7 +1,29 @@
+import Button from "./Button.jsx"
+import JobEntry from "./JobEntry.jsx"
+import { useState } from "react"
+
 const Body = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
   return (
     <div className="w-full p-4 bg-background">
-      <h1 className="font-bold text-2xl text-text mb-3 font-notosans">Overview</h1>
+      {isDialogOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 z-20 cursor-pointer"
+          onClick={() => setIsDialogOpen(false)}
+        ></div>
+      )}
+      <dialog className="z-30 rounded-lg" open={isDialogOpen}>
+        <JobEntry setIsDialogOpen={setIsDialogOpen} />
+      </dialog>
+      <div className="flex justify-between items-center">
+        <h1 className="font-bold text-2xl text-text mb-3 font-notosans">Overview</h1>
+        <Button
+          name="Create ➕"
+          addStyle="bg-primary px-4 py-2 text-gray-100 font-semibold rounded-xl shadow-xl hover:scale-105 hover:bg-accent active:bg-primary"
+          onclick={() => setIsDialogOpen(!isDialogOpen)}
+        />
+      </div>
       <div className="grid grid-cols-12 text-center font-audiowide bg-accent text-gray-100 rounded-lg shadow-[3px_3px_8px_0px_rgba(0,0,0,0.8)] mb-2 border-gray-200 border-2">
         <span className="border-r-2 border-gray-100 py-2 col-span-1">Company</span>
         <span className="border-r-2 border-gray-100 py-2 col-span-2">Role</span>

@@ -5,8 +5,7 @@ const Sidebar = () => {
       <ul className="flex flex-col w-64 border-r-[1px] border-gray-300 p-6 space-y-6">
         {[
           { name: "Home", icon: "./assets/icons/home.svg", href: "/" },
-          { name: "Job Entry", icon: "./assets/icons/home.svg", href: "/jobs" },
-          { name: "Schedule", icon: "./assets/icons/home.svg" },
+          { name: "Schedule", icon: "./assets/icons/home.svg", href: "/schedule" },
           { name: "Mails", icon: "./assets/icons/home.svg" },
           { name: "HireAI", icon: "./assets/icons/home.svg" },
           { name: "Logs", icon: "./assets/icons/home.svg" },
