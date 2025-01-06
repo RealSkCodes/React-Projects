@@ -70,7 +70,7 @@ const Schedule = () => {
         ].map((detail) => {
           return (
             <div className="group" key={detail.id}>
-              <div className="text-center bg-[#e9d5ff] text-text font-semibold font-notosans rounded-lg overflow-hidden hidden group-hover:block border-b-2 border-gray-100 py-2">
+              <div className="text-center bg-[#e9d5ff] text-text font-semibold font-notosans rounded-lg overflow-hidden hidden group-hover:block border-b-2 border-gray-100">
                 <Button
                   addStyle="px-4 m-0 bg-primary rounded-xl text-gray-100 mr-2 shadow-[3px_2px_5px_0px_black] border-[1px] border-gray-300"
                   name="View"

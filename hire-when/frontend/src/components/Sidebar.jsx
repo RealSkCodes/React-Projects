@@ -6,9 +6,10 @@ const Sidebar = () => {
         {[
           { name: "Home", icon: "./assets/icons/home.svg", href: "/" },
           { name: "Schedule", icon: "./assets/icons/home.svg", href: "/schedule" },
-          { name: "Mails", icon: "./assets/icons/home.svg" },
-          { name: "HireAI", icon: "./assets/icons/home.svg" },
-          { name: "Logs", icon: "./assets/icons/home.svg" },
+          // { name: "Mails", icon: "./assets/icons/home.svg" }, Dropped Idea
+          { name: "HireAI", icon: "./assets/icons/home.svg", href: "/hireai" },
+          // { name: "Logs", icon: "./assets/icons/home.svg" }, Dropped Idea
+          { name: "About", icon: "./assets/icons/home.svg" },
         ].map((item, index) => (
           <NavLink
             to={item.href}
