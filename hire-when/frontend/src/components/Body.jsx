@@ -1,8 +1,12 @@
 import Button from "./Button.jsx"
 import JobEntry from "./JobEntry.jsx"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import JobsDataContext from "../utils/JobsDataContext.js"
 
 const Body = () => {
+  // Get the jobs data from context api
+  const { jobs } = useContext(JobsDataContext)
+  // Modal dialog open/close state
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   return (
@@ -34,38 +38,7 @@ const Body = () => {
         <span className="py-2 col-span-2">Source</span>
       </div>
       <div>
-        {[
-          {
-            id: 1,
-            company: "Google",
-            role: "Front-end dev",
-            area: "Mumbai",
-            posted: "25th dec, 2024",
-            submission: "29th dec, 2024",
-            status: "Pending",
-            source: "https://google.com",
-          },
-          {
-            id: 2,
-            company: "Facebook",
-            role: "Full Stack dev",
-            area: "Kolkata",
-            posted: "25th dec, 2024",
-            submission: "29th dec, 2024",
-            status: "Interview Pending",
-            source: "https://facebook.com",
-          },
-          {
-            id: 3,
-            company: "Facebook",
-            role: "Full Stack dev",
-            area: "Kolkata",
-            posted: "25th dec, 2024",
-            submission: "29th dec, 2024",
-            status: "Interview Pending",
-            source: "https://facebook.com",
-          },
-        ].map((detail) => {
+        {jobs.map((detail) => {
           return (
             <div
               className="grid grid-cols-12 text-center bg-purple-200 text-text font-semibold font-notosans rounded-lg overflow-hidden"

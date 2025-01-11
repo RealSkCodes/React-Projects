@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
   console.log("Express server working")
 })
 
-app.get("/data", async (req, res) => {
+app.get("/jobs", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM jobs;")
     res.json(result.rows)
@@ -25,7 +25,7 @@ app.get("/data", async (req, res) => {
 })
 
 // Handle the fetched POST data from frontend
-app.post("/post", async (req, res) => {
+app.post("/add-job", async (req, res) => {
   const formData = req.body
   console.log("Received Data:", formData)
 

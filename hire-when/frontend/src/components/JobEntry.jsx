@@ -23,15 +23,16 @@ const JobEntry = ({ setIsDialogOpen }) => {
     setStatus(value)
     setFormData({ ...formData, status: value })
   }
-  // Handle the formData on click
-  const handleClick = async (formData) => {
-    const data = await fetch("http://localhost:3000/post", {
+  // Handle the formData on Submit click
+  const handleClick = async (formData, setIsDialogOpen) => {
+    const data = await fetch("http://localhost:3000/add-job", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     })
     const json = await data.json()
     console.log("Json data", json)
+    setIsDialogOpen(false)
   }
   return (
     <div className="min-w-min bg-[#eae9ee] flex flex-col items-center rounded-lg">
@@ -141,7 +142,7 @@ const JobEntry = ({ setIsDialogOpen }) => {
         <Button
           addStyle="bg-primary px-5 py-2 text-gray-100 font-semibold rounded-lg shadow-xl hover:scale-105 hover:bg-accent active:bg-primary"
           name="Submit"
-          onclick={() => handleClick(formData)}
+          onclick={() => handleClick(formData, setIsDialogOpen)}
         />
       </div>
     </div>
