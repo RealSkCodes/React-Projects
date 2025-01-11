@@ -1,28 +1,32 @@
-// JobsDataProvider.js
 import React, { useEffect, useState } from "react"
 import JobsDataContext from "./JobsDataContext"
+import io from "socket.io-client"
+
+const socket = io.connect("http://localhost:3000")
 
 const JobsDataProvider = ({ children }) => {
-  const [jobs, setJobs] = useState([
-    {
-      id: 1,
-      company: "Google",
-      role: "Front-end dev",
-      area: "Mumbai",
-      posted: "25th Dec, 2024",
-      submission: "29th Dec, 2024",
-      status: "Pending",
-      source: "https://google.com",
-    },
-  ])
+  const [jobs, setJobs] = useState([])
 
-  useEffect(() => {
-    const fetchJobsData = async () => {
-      const data = await fetch("http://localhost:3000/jobs")
-      const json = await data.json()
-      setJobs(json)
+  const fetchJobsData = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/jobs")
+      const data = await response.json()
+      setJobs(data)
+    } catch (error) {
+      console.error("Error fetching jobs:", error)
     }
+  }
+  useEffect(() => {
+    // Fetch jobs initially
     fetchJobsData()
+    // Listen for socket messages and trigger re-fetch
+    socket.on("job_added", () => {
+      console.log("Job added event received via socket")
+      fetchJobsData()
+    })
+    return () => {
+      socket.off("job_added")
+    }
   }, [])
 
   return <JobsDataContext.Provider value={{ jobs, setJobs }}>{children}</JobsDataContext.Provider>

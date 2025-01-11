@@ -33,6 +33,18 @@ const JobEntry = ({ setIsDialogOpen }) => {
     const json = await data.json()
     console.log("Json data", json)
     setIsDialogOpen(false)
+    setFormData({
+      company: "",
+      role: "",
+      area: "",
+      posted_on: "",
+      submission_date: "",
+      status: "",
+      source: "",
+      salary: "",
+      notes: "",
+    })
+    setStatus("")
   }
   return (
     <div className="min-w-min bg-[#eae9ee] flex flex-col items-center rounded-lg">
