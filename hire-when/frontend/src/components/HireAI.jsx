@@ -1,7 +1,9 @@
 import SearchBar from "./SearchBar.jsx"
+import { useState } from "react"
 
 const HireAI = () => {
-  const messages = {
+  const [text, setText] = useState("")
+  const [messages, setMessages] = useState({
     user: [
       { id: 1, text: "Bro whats up" },
       { id: 2, text: "How are you doing?" },
@@ -12,13 +14,23 @@ const HireAI = () => {
       { id: 2, text: "I'm here to assist you." },
       { id: 3, text: "I can help with various tasks!" },
     ],
-  }
+  })
 
   // Combine and sort messages by ID
   const combinedMessages = [
     ...messages.user.map((msg) => ({ ...msg, type: "user" })),
     ...messages.bot.map((msg) => ({ ...msg, type: "bot" })),
   ].sort((a, b) => a.id - b.id)
+
+  // Handle adding new user messages
+  const handleClick = () => {
+    if (!text.trim()) return
+    setMessages((prevMessages) => ({
+      ...prevMessages,
+      user: [...prevMessages.user, { id: prevMessages.user.length + 1, text }],
+    }))
+    setText("")
+  }
 
   return (
     <div className="w-full h-screen flex flex-col pb-28">
@@ -54,6 +66,9 @@ const HireAI = () => {
           inpPlaceholder="Enter your prompts here..."
           btnName="Enter"
           btnStyle="bg-primary border-none px-4 py-2 text-gray-100"
+          onInpChange={(e) => setText(e.target.value)}
+          inpValue={text}
+          onBtnClick={handleClick}
         />
       </div>
     </div>
