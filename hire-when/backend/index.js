@@ -60,6 +60,44 @@ app.post("/add-job", async (req, res) => {
   })
 })
 
+app.post("/hireai-post", async (req, res) => {
+  // Extract the user prompt from the request body
+  const userPrompt = req.body
+  console.log("User Prompt:", userPrompt.user)
+
+  // Function to query the Hugging Face API
+  const query = async (data) => {
+    const response = await fetch(
+      "https://api-inference.huggingface.co/models/deepset/roberta-base-squad2",
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.HUGGINGFACE_AUTH_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    )
+    const result = await response.json()
+    return result
+  }
+
+  try {
+    const apiResponse = await query({
+      inputs: {
+        question: userPrompt.user,
+        context: "My name is realsk, i'm a junior web developer",
+      },
+    })
+    // Log and send the response back to the frontend
+    console.log("API Response:", apiResponse)
+    res.json(apiResponse)
+  } catch (error) {
+    console.error("Error querying Hugging Face API:", error)
+    res.status(500).json({ error: "An error occurred while querying the API." })
+  }
+})
+
 // Websocket usage
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`)

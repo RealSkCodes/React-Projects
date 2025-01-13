@@ -23,11 +23,24 @@ const HireAI = () => {
   ].sort((a, b) => a.id - b.id)
 
   // Handle adding new user messages
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!text.trim()) return
     setMessages((prevMessages) => ({
       ...prevMessages,
-      user: [...prevMessages.user, { id: prevMessages.user.length + 1, text }],
+      user: [...prevMessages.user, { id: prevMessages.user.length + 1, text: text }],
+    }))
+    const data = await fetch(`http://localhost:3000/hireai-post`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user: text }),
+    })
+    const json = await data.json()
+    console.log(json)
+    setMessages((prevMessages) => ({
+      ...prevMessages,
+      bot: [...prevMessages.bot, { id: prevMessages.bot.length + 1, text: json.answer }],
     }))
     setText("")
   }
