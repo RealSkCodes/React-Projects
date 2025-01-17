@@ -16,7 +16,7 @@ const InputField = ({
         placeholder={inpPlaceholder}
         value={inpValue}
         onChange={onInpChange}
-        className={`bg-transparent outline-none border-black border-2 rounded-md mx-2 my-1 px-2 ${inpStyle}`}
+        className={`rounded-md mx-2 my-1 px-2 border-2 border-black bg-transparent outline-none ${inpStyle}`}
       />
     </div>
   )

@@ -2,23 +2,22 @@ import SearchBar from "./SearchBar.jsx"
 
 const Header = () => {
   return (
-    <div className="bg-background grid grid-cols-3 items-center border-b-[1px] border-gray-300">
+    <div className="grid grid-cols-3 items-center bg-background border-b-[1px] border-border">
       <div className="flex items-center">
         <img
-          className="w-8 rounded-md m-2 cursor-pointer "
-          src="./assets/images/hamburgermenu-button.png"
+          className="w-7 m-2 rounded-md bg-black cursor-pointer"
+          src="./assets/images/icons8-menu-120.png"
           alt="hamburger button"
         />
-        <img className="w-10 m-2" src="./assets/images/logo.png" alt="logo" />
-        <span className="font-semibold text-3xl font-audiowide text-text my-2">HIRE WHEN</span>
+        <img className="h-12 mx-2 mb-3" src="./assets/icons/logo2.png" alt="logo" />
       </div>
       <SearchBar
         btnName="Search"
-        inpStyle="p-1 mr-0 rounded-l-[50px] border-darkPlum w-96 font-semibold"
-        btnStyle="px-3 py-[6px] ml-0 rounded-r-[50px] border-none font-semibold bg-primary text-white"
+        inpStyle="w-96 px-4 py-[5px] rounded-l-[50px] border-[1px] border-border bg-gray-700 text-text font-medium mr-0"
+        btnStyle="px-4 py-[7px] ml-[-2px] rounded-r-[50px] border-none bg-primary text-text font-semibold"
       />
       <img
-        className="w-16 m-2 cursor-pointer drop-shadow-[3px_3px_2px_black] ml-auto"
+        className="w-16 m-2 ml-auto cursor-pointer"
         src="./assets/images/user-logo.png"
         alt="user logo"
       />

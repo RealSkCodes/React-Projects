@@ -5,14 +5,16 @@ export default {
     extend: {
       fontFamily: {
         audiowide: ["Audiowide", "serif"],
-        notosans: ["Noto Sans", "serif"],
+        geist: ["Geist", "serif"],
       },
       colors: {
-        text: "#0b0a0f",
-        background: "#f5f4fa",
-        primary: "#4d3acb",
-        secondary: "#8e7ff0",
-        accent: "#5b42ff",
+        text: "#e4e5fb", // text, headings, readable content
+        background: "#020617", // website background
+        background_2: "#0c1222",
+        primary: "#460fa5", // buttons, links, key interactive elements
+        secoundary: "#7783f0", // navigation bars, secondary buttons, hover effects
+        accent: "#77e93a", // callouts, success messages, attention-grabbing elements
+        border: "#7D7467",
       },
     },
   },

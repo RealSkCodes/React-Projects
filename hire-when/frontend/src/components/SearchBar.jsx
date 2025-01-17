@@ -15,11 +15,11 @@ const SearchBar = ({
         placeholder={inpPlaceholder}
         value={inpValue}
         onChange={onInpChange}
-        className={`bg-transparent h-9 resize-none outline-none border-black border-2 rounded-md m-2 px-2 ${inpStyle}`}
+        className={`h-9 px-2 m-2 bg-transparent border-2 border-black rounded-md resize-none outline-none ${inpStyle}`}
       />
       <button
         onClick={onBtnClick}
-        className={`border-black border-2 rounded-md my-2 px-2 ${btnStyle}`}
+        className={`px-2 my-2 border-2 border-black rounded-md ${btnStyle}`}
       >
         {btnName}
       </button>

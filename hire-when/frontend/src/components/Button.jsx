@@ -1,6 +1,10 @@
-const Button = ({ onclick, name = "Button", addStyle = "" }) => {
+const Button = ({ onclick, name = "Button", addStyle = "", children = "" }) => {
   return (
-    <button className={`text-black rounded-md m-2 px-2 ${addStyle}`} onClick={onclick}>
+    <button
+      className={`flex items-center rounded-md m-2 px-2 text-black ${addStyle}`}
+      onClick={onclick}
+    >
+      {children}
       {name}
     </button>
   )

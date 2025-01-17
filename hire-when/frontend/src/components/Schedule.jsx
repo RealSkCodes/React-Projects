@@ -9,7 +9,7 @@ const Schedule = () => {
     <div className="w-full p-4 bg-background">
       {isDialogOpen && (
         <div
-          className="fixed inset-0 bg-black opacity-50 z-20 cursor-pointer"
+          className="fixed inset-0 z-20 bg-black opacity-50 cursor-pointer"
           onClick={() => setIsDialogOpen(false)}
         ></div>
       )}
@@ -17,22 +17,38 @@ const Schedule = () => {
         <JobEntry setIsDialogOpen={setIsDialogOpen} />
       </dialog>
       <div className="flex justify-between items-center">
-        <h1 className="font-bold text-2xl text-text mb-3 font-notosans">Interview Schedules</h1>
+        <h1 className="text-2xl font-bold text-text mb-3 font-geist">Interview Schedules</h1>
         <Button
-          name="Create ➕"
-          addStyle="bg-primary px-4 py-2 text-gray-100 font-semibold rounded-xl shadow-xl hover:scale-105 hover:bg-accent active:bg-primary"
+          name="Create"
+          addStyle="rounded-3xl px-4 py-2 bg-primary text-gray-100 font-semibold active:bg-secoundary"
           onclick={() => setIsDialogOpen(!isDialogOpen)}
-        />
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="mr-2 h-4 w-4"
+          >
+            <path d="M5 12h14"></path>
+            <path d="M12 5v14"></path>
+          </svg>
+        </Button>
       </div>
-      <div className="grid grid-cols-12 text-center font-audiowide bg-accent text-gray-100 rounded-lg shadow-[3px_3px_8px_0px_rgba(0,0,0,0.8)] mb-2 border-gray-200 border-2">
-        <span className="border-r-2 border-gray-100 py-2 col-span-2">Date</span>
-        <span className="border-r-2 border-gray-100 py-2 col-span-1">Company</span>
-        <span className="border-r-2 border-gray-100 py-2 col-span-1">Area</span>
-        <span className="border-r-2 border-gray-100 py-2 col-span-2">Status</span>
-        <span className="border-r-2 border-gray-100 py-2 col-span-2">Source</span>
+      <div className="grid grid-cols-12 text-center bg-primary text-text font-audiowide rounded-lg shadow-[3px_3px_8px_0px_rgba(0,0,0,0.8)] mb-2 border-2 border-blue-700">
+        <span className="py-2 col-span-2">Date</span>
+        <span className="py-2 col-span-1">Company</span>
+        <span className="py-2 col-span-1">Area</span>
+        <span className="py-2 col-span-2">Status</span>
+        <span className="py-2 col-span-2">Source</span>
         <span className="py-2 col-span-4">Note</span>
       </div>
-      <div className="">
+      <div className="border-[1px] border-border rounded-lg overflow-y-auto h-[78vh]">
         {[
           {
             id: 1,
@@ -69,35 +85,35 @@ const Schedule = () => {
           },
         ].map((detail) => {
           return (
-            <div className="group" key={detail.id}>
-              <div className="text-center bg-[#e9d5ff] text-text font-semibold font-notosans rounded-lg overflow-hidden hidden group-hover:block border-b-2 border-gray-100">
+            <div className="group relative" key={detail.id}>
+              <div className="grid grid-cols-12 text-center bg-background_2 text-text font-normal font-geist overflow-hidden hover:bg-slate-800">
+                <span className="border-b-[1px] border-border py-2 col-span-2">
+                  {detail.submission}
+                </span>
+                <span className="border-b-[1px] border-border py-2 col-span-1">
+                  {detail.company}
+                </span>
+                <span className="border-b-[1px] border-border py-2 col-span-1">{detail.area}</span>
+                <span className="border-b-[1px] border-border py-2 col-span-2">
+                  {detail.status}
+                </span>
+                <span className="border-b-[1px] border-border py-2 col-span-2">
+                  {detail.source}
+                </span>
+                <span className="border-b-[1px] border-border py-2 col-span-4">{detail.note}</span>
+              </div>
+
+              {/* The container for the buttons */}
+              <div className="absolute z-10 right-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 flex space-x-2 transition-all duration-300 ease-in-out items-center">
                 <Button
-                  addStyle="px-4 m-0 bg-primary rounded-xl text-gray-100 mr-2 shadow-[3px_2px_5px_0px_black] border-[1px] border-gray-300"
+                  addStyle="py-1 bg-secoundary text-white rounded-md shadow-md transform transition-all duration-300 hover:bg-blue-600 hover:scale-105 hover:shadow-lg"
                   name="View"
                 />
                 <Button
-                  addStyle="px-4 m-0 bg-secondary rounded-xl text-gray-100 ml-2 shadow-[3px_2px_5px_0px_black] border-[1px] border-gray-300"
+                  addStyle="py-1 bg-secoundary text-white rounded-md shadow-md transform transition-all duration-300 hover:bg-purple-600 hover:scale-105 hover:shadow-lg"
                   name="Edit"
                   onclick={() => setIsDialogOpen(true)}
                 />
-              </div>
-              <div className="grid grid-cols-12 text-center bg-purple-200 text-text font-semibold font-notosans rounded-lg overflow-hidden group-hover:hidden">
-                <span className="border-r-2 border-b-2 border-gray-100 py-2 col-span-2">
-                  {detail.submission}
-                </span>
-                <span className="border-r-2 border-b-2 border-gray-100 py-2 col-span-1">
-                  {detail.company}
-                </span>
-                <span className="border-r-2 border-b-2 border-gray-100 py-2 col-span-1">
-                  {detail.area}
-                </span>
-                <span className="border-r-2 border-b-2 border-gray-100 py-2 col-span-2">
-                  {detail.status}
-                </span>
-                <span className="border-r-2 border-b-2 border-gray-100 py-2 col-span-2">
-                  {detail.source}
-                </span>
-                <span className="border-b-2 border-gray-100 py-2 col-span-4">{detail.note}</span>
               </div>
             </div>
           )
