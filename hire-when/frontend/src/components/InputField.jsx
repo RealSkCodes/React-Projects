@@ -7,6 +7,9 @@ const InputField = ({
   inpValue,
   onInpChange,
   inpStyle = "",
+  isRequired = false,
+  min = "",
+  max = "",
 }) => {
   return (
     <div className={`flex flex-col w-min ${mainBgStyle}`}>
@@ -17,6 +20,9 @@ const InputField = ({
         value={inpValue}
         onChange={onInpChange}
         className={`rounded-md mx-2 my-1 px-2 border-2 border-black bg-transparent outline-none ${inpStyle}`}
+        required={isRequired}
+        minLength={min}
+        maxLength={max}
       />
     </div>
   )

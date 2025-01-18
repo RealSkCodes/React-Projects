@@ -75,7 +75,9 @@ const Body = () => {
               {formatDate(detail.submission_date)}
             </span>
             <span className="col-span-2 py-4 border-b-[1px] border-border">{detail.status}</span>
-            <span className="col-span-2 py-4 border-b-[1px] border-border">{detail.source}</span>
+            <span className="col-span-2 py-4 border-b-[1px] border-border overflow-hidden">
+              {detail.source}
+            </span>
           </div>
         ))}
       </div>
