@@ -1,11 +1,12 @@
-const Button = ({ onclick, name = "Button", addStyle = "", children = "" }) => {
+import { twMerge } from "tailwind-merge"
+
+const Button = ({ children, className, ...props }) => {
   return (
     <button
-      className={`flex items-center rounded-md m-2 px-2 text-black ${addStyle}`}
-      onClick={onclick}
+      className={twMerge("flex items-center rounded-md text-black bg-gray-400", className)}
+      {...props}
     >
       {children}
-      {name}
     </button>
   )
 }

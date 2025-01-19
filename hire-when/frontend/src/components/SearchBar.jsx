@@ -1,3 +1,6 @@
+import Button from "./Button"
+import { twMerge } from "tailwind-merge"
+
 const SearchBar = ({
   containerStyle = "",
   inpPlaceholder = "🔍 Search....",
@@ -15,14 +18,17 @@ const SearchBar = ({
         placeholder={inpPlaceholder}
         value={inpValue}
         onChange={onInpChange}
-        className={`h-9 px-2 m-2 bg-transparent border-2 border-black rounded-md resize-none outline-none ${inpStyle}`}
+        className={twMerge(
+          "h-9 px-2 m-2 bg-transparent border-2 border-black rounded-md resize-none outline-none",
+          inpStyle
+        )}
       />
-      <button
+      <Button
         onClick={onBtnClick}
-        className={`px-2 my-2 border-2 border-black rounded-md ${btnStyle}`}
+        className={twMerge("px-2 my-2 border-2 border-black rounded-md", btnStyle)}
       >
         {btnName}
-      </button>
+      </Button>
     </div>
   )
 }
