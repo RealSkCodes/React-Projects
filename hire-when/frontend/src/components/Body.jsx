@@ -1,7 +1,7 @@
 import Button from "./Button.jsx"
 import JobEntry from "./JobEntry.jsx"
 import { useState, useContext } from "react"
-import JobsDataContext from "../utils/JobsDataContext.js"
+import { JobsDataContext } from "../utils/AppContexts.js"
 
 const Body = () => {
   const { jobs } = useContext(JobsDataContext)

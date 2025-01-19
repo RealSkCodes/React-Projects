@@ -4,11 +4,11 @@ import HireAI from "./components/HireAI.jsx"
 import Schedule from "./components/Schedule.jsx"
 import { createRoot } from "react-dom/client"
 import { BrowserRouter, Routes, Route } from "react-router"
-import JobsDataProvider from "./utils/JobsDataProvider.jsx"
+import AppContextsProvider from "./utils/AppContextsProvider.jsx"
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <JobsDataProvider>
+    <AppContextsProvider>
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="/" element={<Body />} />
@@ -16,6 +16,6 @@ createRoot(document.getElementById("root")).render(
           <Route path="/hireai" element={<HireAI />} />
         </Route>
       </Routes>
-    </JobsDataProvider>
+    </AppContextsProvider>
   </BrowserRouter>
 )

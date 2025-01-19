@@ -1,10 +1,14 @@
 import SearchBar from "./SearchBar.jsx"
+import { useContext } from "react"
+import { HamburgerMenuContext } from "../utils/AppContexts.js"
 
 const Header = () => {
+  const { isOpen, toggleMenu } = useContext(HamburgerMenuContext)
   return (
     <div className="grid grid-cols-3 items-center bg-background border-b-[1px] border-border">
       <div className="flex items-center">
         <img
+          onClick={() => toggleMenu()}
           className="w-7 m-2 rounded-md bg-black cursor-pointer"
           src="./assets/images/icons8-menu-120.png"
           alt="hamburger button"
