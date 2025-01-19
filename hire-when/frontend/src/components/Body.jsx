@@ -26,12 +26,11 @@ const Body = () => {
       <dialog className="z-30 rounded-lg" open={isDialogOpen}>
         <JobEntry setIsDialogOpen={setIsDialogOpen} />
       </dialog>
-      <div className="flex justify-between items-center">
-        <h1 className="mb-3 text-2xl text-text font-bold font-geist">Overview</h1>
+      <div className="flex justify-between items-center mb-3">
+        <h1 className="text-2xl text-text font-bold font-geist">Overview</h1>
         <Button
-          name="Create"
-          addStyle="rounded-3xl px-4 py-2 bg-primary text-gray-100 font-semibold active:bg-secoundary"
-          onclick={() => setIsDialogOpen(!isDialogOpen)}
+          className="rounded-3xl px-4 py-2 bg-primary text-gray-100 font-semibold active:bg-secoundary"
+          onClick={() => setIsDialogOpen(!isDialogOpen)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -48,6 +47,7 @@ const Body = () => {
             <path d="M5 12h14"></path>
             <path d="M12 5v14"></path>
           </svg>
+          Create
         </Button>
       </div>
       <div className="grid grid-cols-12 text-center font-audiowide bg-primary text-text rounded-lg shadow-[3px_3px_8px_0px_rgba(0,0,0,0.8)] mb-2 border-2 border-blue-700">
@@ -65,16 +65,24 @@ const Body = () => {
             className="grid grid-cols-12 text-center bg-background_2 text-text font-geist font-normal hover:bg-slate-800"
             key={detail.id}
           >
-            <span className="col-span-1 py-4 border-b-[1px] border-border">{detail.company}</span>
-            <span className="col-span-2 py-4 border-b-[1px] border-border">{detail.role}</span>
-            <span className="col-span-1 py-4 border-b-[1px] border-border">{detail.area}</span>
-            <span className="col-span-2 py-4 border-b-[1px] border-border">
+            <span className="col-span-1 py-4 border-b-[1px] border-border overflow-hidden">
+              {detail.company}
+            </span>
+            <span className="col-span-2 py-4 border-b-[1px] border-border overflow-hidden">
+              {detail.role}
+            </span>
+            <span className="col-span-1 py-4 border-b-[1px] border-border overflow-hidden">
+              {detail.area}
+            </span>
+            <span className="col-span-2 py-4 border-b-[1px] border-border overflow-hidden">
               {formatDate(detail.posted_on)}
             </span>
-            <span className="col-span-2 py-4 border-b-[1px] border-border">
+            <span className="col-span-2 py-4 border-b-[1px] border-border overflow-hidden">
               {formatDate(detail.submission_date)}
             </span>
-            <span className="col-span-2 py-4 border-b-[1px] border-border">{detail.status}</span>
+            <span className="col-span-2 py-4 border-b-[1px] border-border overflow-hidden">
+              {detail.status}
+            </span>
             <span className="col-span-2 py-4 border-b-[1px] border-border overflow-hidden">
               {detail.source}
             </span>

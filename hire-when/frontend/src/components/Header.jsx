@@ -13,7 +13,7 @@ const Header = () => {
       </div>
       <SearchBar
         btnName="Search"
-        inpStyle="w-96 px-4 py-[5px] rounded-l-[50px] border-[1px] border-border bg-gray-700 text-text font-medium mr-0"
+        inpStyle="w-96 px-4 py-[5px] rounded-l-[50px] border-[1px] border-border bg-background text-text font-medium mr-0"
         btnStyle="px-4 py-[7px] ml-[-2px] rounded-r-[50px] border-none bg-primary text-text font-semibold"
       />
       <img

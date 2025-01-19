@@ -16,12 +16,11 @@ const Schedule = () => {
       <dialog className="z-30 rounded-lg" open={isDialogOpen}>
         <JobEntry setIsDialogOpen={setIsDialogOpen} />
       </dialog>
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-text mb-3 font-geist">Interview Schedules</h1>
+      <div className="flex justify-between items-center mb-3">
+        <h1 className="text-2xl font-bold text-text font-geist">Interview Schedules</h1>
         <Button
-          name="Create"
-          addStyle="rounded-3xl px-4 py-2 bg-primary text-gray-100 font-semibold active:bg-secoundary"
-          onclick={() => setIsDialogOpen(!isDialogOpen)}
+          className="rounded-3xl px-4 py-2 bg-primary text-gray-100 font-semibold active:bg-secoundary"
+          onClick={() => setIsDialogOpen(!isDialogOpen)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,6 +37,7 @@ const Schedule = () => {
             <path d="M5 12h14"></path>
             <path d="M12 5v14"></path>
           </svg>
+          Create
         </Button>
       </div>
       <div className="grid grid-cols-12 text-center bg-primary text-text font-audiowide rounded-lg shadow-[3px_3px_8px_0px_rgba(0,0,0,0.8)] mb-2 border-2 border-blue-700">
@@ -105,15 +105,15 @@ const Schedule = () => {
 
               {/* The container for the buttons */}
               <div className="absolute z-10 right-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 flex space-x-2 transition-all duration-300 ease-in-out items-center">
+                <Button className="py-1 px-3 bg-secoundary text-white rounded-md shadow-md transform transition-all duration-300 hover:bg-blue-600 hover:scale-105 hover:shadow-lg">
+                  View
+                </Button>
                 <Button
-                  addStyle="py-1 bg-secoundary text-white rounded-md shadow-md transform transition-all duration-300 hover:bg-blue-600 hover:scale-105 hover:shadow-lg"
-                  name="View"
-                />
-                <Button
-                  addStyle="py-1 bg-secoundary text-white rounded-md shadow-md transform transition-all duration-300 hover:bg-purple-600 hover:scale-105 hover:shadow-lg"
-                  name="Edit"
-                  onclick={() => setIsDialogOpen(true)}
-                />
+                  className="py-1 px-3 bg-secoundary text-white rounded-md shadow-md transform transition-all duration-300 hover:bg-purple-600 hover:scale-105 hover:shadow-lg"
+                  onClick={() => setIsDialogOpen(true)}
+                >
+                  Edit
+                </Button>
               </div>
             </div>
           )

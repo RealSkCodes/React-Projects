@@ -75,10 +75,11 @@ const JobEntry = ({ setIsDialogOpen }) => {
         <div className="flex justify-between w-full px-4 py-3 rounded-lg bg-background">
           <h1 className="text-2xl font-bold text-gray-100">Job Entry Form</h1>
           <Button
-            name="❌"
-            addStyle="text-2xl text-gray-100 hover:text-accent text-right"
-            onclick={() => setIsDialogOpen(false)}
-          />
+            className="text-2xl text-gray-100 hover:text-accent bg-background text-right"
+            onClick={() => setIsDialogOpen(false)}
+          >
+            ❌
+          </Button>
         </div>
         <form
           onSubmit={handleSubmit}
@@ -195,12 +196,12 @@ const JobEntry = ({ setIsDialogOpen }) => {
               onInpChange={(e) => setFormData({ ...formData, notes: e.target.value })}
             />
           </div>
-          <button
+          <Button
             type="submit"
-            className="px-6 py-3 text-gray-100 font-semibold rounded-lg shadow-md bg-primary active:bg-secoundary"
+            className="px-6 py-3 mt-3 text-gray-100 font-semibold rounded-lg shadow-md bg-primary active:bg-secoundary"
           >
             Submit
-          </button>
+          </Button>
         </form>
       </div>
     </div>
