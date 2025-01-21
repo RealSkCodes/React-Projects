@@ -2,7 +2,7 @@ import HireAI from "./HireAI.jsx"
 
 const LlmSidebar = () => {
   return (
-    <div className="flex flex-col w-1/3 border-l-[1px] border-border bg-background_2">
+    <div className="h-screen xl:min-w-[320px] xl:flex bg-background_2 border-l border-border shadow-lg text-text hidden">
       <HireAI />
     </div>
   )

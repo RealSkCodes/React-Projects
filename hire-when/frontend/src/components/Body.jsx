@@ -1,7 +1,9 @@
 import Button from "./Button.jsx"
 import JobEntry from "./JobEntry.jsx"
-import { useState, useContext } from "react"
+import JobsCard from "./JobsCard.jsx"
+import { useState, useEffect, useContext } from "react"
 import { JobsDataContext } from "../utils/AppContexts.js"
+import { JobSidebarToggleContext } from "../utils/AppContexts.js"
 
 const Body = () => {
   const { jobs } = useContext(JobsDataContext)
@@ -16,7 +18,7 @@ const Body = () => {
   }
 
   return (
-    <div className="w-full h-full p-4 bg-background">
+    <div className="w-full h-screen p-4 bg-background">
       {isDialogOpen && (
         <div
           className="fixed inset-0 z-20 bg-black opacity-50 cursor-pointer"
@@ -50,43 +52,22 @@ const Body = () => {
           Create
         </Button>
       </div>
-      <div className="grid grid-cols-12 text-center font-audiowide bg-primary text-text rounded-lg shadow-[3px_3px_8px_0px_rgba(0,0,0,0.8)] mb-2 border-2 border-blue-700">
-        <span className="py-2 col-span-1">Company</span>
-        <span className="py-2 col-span-2">Role</span>
-        <span className="py-2 col-span-1">Area</span>
-        <span className="py-2 col-span-2">Posted On</span>
-        <span className="py-2 col-span-2">Submission Date</span>
-        <span className="py-2 col-span-2">Status</span>
-        <span className="py-2 col-span-2">Source</span>
-      </div>
-      <div className="h-[78vh] overflow-y-auto border-[1px] border-border rounded-lg">
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto h-[80vh]">
         {jobs.map((detail) => (
-          <div
-            className="grid grid-cols-12 text-center bg-background_2 text-text font-geist font-normal hover:bg-slate-800"
+          <JobsCard
             key={detail.id}
-          >
-            <span className="col-span-1 py-4 border-b-[1px] border-border overflow-hidden">
-              {detail.company}
-            </span>
-            <span className="col-span-2 py-4 border-b-[1px] border-border overflow-hidden">
-              {detail.role}
-            </span>
-            <span className="col-span-1 py-4 border-b-[1px] border-border overflow-hidden">
-              {detail.area}
-            </span>
-            <span className="col-span-2 py-4 border-b-[1px] border-border overflow-hidden">
-              {formatDate(detail.posted_on)}
-            </span>
-            <span className="col-span-2 py-4 border-b-[1px] border-border overflow-hidden">
-              {formatDate(detail.submission_date)}
-            </span>
-            <span className="col-span-2 py-4 border-b-[1px] border-border overflow-hidden">
-              {detail.status}
-            </span>
-            <span className="col-span-2 py-4 border-b-[1px] border-border overflow-hidden">
-              {detail.source}
-            </span>
-          </div>
+            id={detail.id}
+            company={detail.company}
+            area={detail.area}
+            role={detail.role}
+            posted_on={formatDate(detail.posted_on)}
+            submission_date={formatDate(detail.submission_date)}
+            status={detail.status}
+            source={detail.source}
+            notes={detail.notes}
+            fullData={detail}
+          />
         ))}
       </div>
     </div>

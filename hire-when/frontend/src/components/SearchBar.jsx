@@ -12,7 +12,7 @@ const SearchBar = ({
   btnName = "Button",
 }) => {
   return (
-    <div className={`flex items-center ${containerStyle}`}>
+    <div className={twMerge("flex items-center", containerStyle)}>
       <textarea
         type="text"
         placeholder={inpPlaceholder}
