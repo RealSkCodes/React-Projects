@@ -8,6 +8,13 @@ import { JobSidebarToggleContext } from "../utils/AppContexts.js"
 const Body = () => {
   const { jobs } = useContext(JobsDataContext)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const { isOpen, setIsOpen, jobData, setJobData } = useContext(JobSidebarToggleContext)
+  useEffect(() => {
+    return () => {
+      setIsOpen(false)
+      setJobData(null)
+    }
+  }, [])
 
   const formatDate = (dateString) => {
     const date = new Date(dateString)
