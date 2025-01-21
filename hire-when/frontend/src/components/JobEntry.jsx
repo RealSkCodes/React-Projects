@@ -75,7 +75,7 @@ const JobEntry = ({ setIsDialogOpen }) => {
         <div className="flex justify-between w-full px-4 py-3 rounded-lg bg-background">
           <h1 className="text-2xl font-bold text-gray-100">Job Entry Form</h1>
           <Button
-            className="text-2xl text-gray-100 hover:text-accent bg-background text-right"
+            className="text-2xl text-text hover:text-secoundary bg-background text-right"
             onClick={() => setIsDialogOpen(false)}
           >
             ❌
