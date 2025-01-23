@@ -36,9 +36,11 @@ const Dropdown = ({
         value={selectedValue}
         onChange={handleChange}
       >
-        <option value="" disabled className={twMerge("bg-background")}>
-          {placeholder}
-        </option>
+        {selectedValue === "" && (
+          <option value="" disabled className={twMerge("bg-background")}>
+            {placeholder}
+          </option>
+        )}
         {itemsArray.map((item) => (
           <option key={item} className={twMerge("bg-background")} value={item}>
             {item}

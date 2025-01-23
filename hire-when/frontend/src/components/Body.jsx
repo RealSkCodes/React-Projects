@@ -15,7 +15,7 @@ const Body = () => {
       setIsOpen(false)
       setJobData(null)
     }
-  }, [])
+  }, [setIsOpen, setJobData])
 
   const formatDate = (dateString) => {
     const date = new Date(dateString)
@@ -27,13 +27,38 @@ const Body = () => {
 
   // Filter functions
   const [filteredJobs, setFilteredJobs] = useState([])
-  // Date filter
-  const handleDateFilterChange = (value) => {}
-  // Status filter
   useEffect(() => {
     setFilteredJobs(jobs)
   }, [jobs])
+  // Date filter ---->
+  const [dateFilter, setDateFilter] = useState("")
+  const handleDateFilterChange = (value) => {
+    setDateFilter(value)
+    let sortedJobs = [...jobs]
+    // When date filter changes, reset status filter to "All"
+    if (statusFilter !== "All") {
+      setStatusFilter("All")
+    }
+    // Sorting jobs based on the selected date filter
+    if (value === "Posted (Newest)") {
+      sortedJobs.sort((a, b) => new Date(b.posted_on) - new Date(a.posted_on))
+    } else if (value === "Posted (Oldest)") {
+      sortedJobs.sort((a, b) => new Date(a.posted_on) - new Date(b.posted_on))
+    } else if (value === "Applied (Newest)") {
+      sortedJobs.sort((a, b) => new Date(b.submission_date) - new Date(a.submission_date))
+    } else if (value === "Applied (Oldest)") {
+      sortedJobs.sort((a, b) => new Date(a.submission_date) - new Date(b.submission_date))
+    }
+    setFilteredJobs(sortedJobs)
+  }
+  // Status filter ---->
+  const [statusFilter, setStatusFilter] = useState("")
   const handleStatusFilterChange = (value) => {
+    setStatusFilter(value)
+    // Reset date filter to "Date" when status changes
+    if (value !== "All") {
+      setDateFilter("")
+    }
     if (value === "All") {
       setFilteredJobs(jobs)
     } else {
@@ -48,6 +73,7 @@ const Body = () => {
         <div
           className="fixed inset-0 z-20 bg-black opacity-50 cursor-pointer"
           onClick={() => setIsDialogOpen(false)}
+          aria-hidden="true"
         ></div>
       )}
       <dialog className="z-30 rounded-lg" open={isDialogOpen}>
@@ -63,8 +89,9 @@ const Body = () => {
               "Applied (Newest)",
               "Applied (Oldest)",
             ]}
-            placeholder="Date"
+            placeholder={dateFilter || "Date"}
             dropStyle="h-9 min-w-[150px] border border-border bg-background_2 text-text"
+            selectedValue={dateFilter}
             onSelectChange={handleDateFilterChange}
           />
           <Dropdown
@@ -79,8 +106,9 @@ const Body = () => {
               "Rejected",
               "Withdrawn",
             ]}
-            placeholder="Status"
+            placeholder={statusFilter || "Status"}
             dropStyle="h-9 min-w-[150px] border border-border bg-background_2 text-text"
+            selectedValue={statusFilter}
             onSelectChange={handleStatusFilterChange}
           />
           <Button
