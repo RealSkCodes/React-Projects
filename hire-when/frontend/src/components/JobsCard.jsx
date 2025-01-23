@@ -23,7 +23,7 @@ const JobsCard = ({
 
   return (
     <div
-      className="card p-4 space-y-2 bg-background_2 text-text font-geist rounded-lg shadow-md hover:bg-slate-800"
+      className="card p-4 h-min space-y-2 bg-background_2 text-text font-geist rounded-lg shadow-md hover:bg-slate-800"
       key={id}
       onClick={() => handleClick()}
     >
