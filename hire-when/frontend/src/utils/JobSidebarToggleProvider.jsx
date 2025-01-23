@@ -2,7 +2,7 @@ import { useState } from "react"
 import { JobSidebarToggleContext } from "./AppContexts.js"
 
 const JobSidebarToggleProvider = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const [jobData, setJobData] = useState({})
 
   return (
