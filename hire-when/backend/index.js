@@ -60,6 +60,45 @@ app.post("/add-job", async (req, res) => {
   })
 })
 
+// Handle editing job data
+app.put("/edit-job", async (req, res) => {
+  const formData = req.body
+  console.log("Previous job's updated data received to backend", formData)
+
+  const query = `
+    UPDATE jobs
+    SET 
+      company = $1,
+      role = $2,
+      area = $3,
+      posted_on = $4,
+      submission_date = $5,
+      salary = $6,
+      source = $7,
+      status = $8,
+      notes = $9
+    WHERE id = $10;
+  `
+
+  const values = [
+    formData.company,
+    formData.role,
+    formData.area,
+    formData.posted_on,
+    formData.submission_date,
+    formData.salary,
+    formData.source,
+    formData.status,
+    formData.notes || null,
+    formData.id,
+  ]
+
+  await pool.query(query, values)
+  res.status(200).json({
+    message: `Job with ID ${formData.id} updated successfully`,
+  })
+})
+
 app.post("/hireai-post", async (req, res) => {
   // Extract the user prompt from the request body
   const userPrompt = req.body

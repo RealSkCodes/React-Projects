@@ -3,18 +3,7 @@ import InputField from "./InputField" // Make sure the path is correct
 import Dropdown from "./Dropdown"
 import Button from "./Button"
 
-const JobEntry = ({ setIsDialogOpen }) => {
-  const [formData, setFormData] = useState({
-    company: "",
-    role: "",
-    area: "",
-    posted_on: "",
-    submission_date: "",
-    status: "",
-    source: "",
-    salary: "",
-    notes: "",
-  })
+const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
   const [status, setStatus] = useState("")
   const [isInvalidStatus, setIsInvalidStatus] = useState(false)
 
@@ -23,7 +12,6 @@ const JobEntry = ({ setIsDialogOpen }) => {
     setStatus(value)
     setFormData({ ...formData, status: value })
   }
-
   const handleSubmit = async (event) => {
     event.preventDefault()
 
@@ -35,32 +23,48 @@ const JobEntry = ({ setIsDialogOpen }) => {
 
     if (event.target.checkValidity()) {
       try {
-        const response = await fetch("http://localhost:3000/add-job", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        })
+        // If id doesn't exist means job isn't present in db then create new job data
+        if (!jobId) {
+          const response = await fetch("http://localhost:3000/add-job", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          })
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+          }
+
+          const json = await response.json()
+          console.log("Json data", json)
+
+          setIsDialogOpen(false)
+          setFormData({
+            company: "",
+            role: "",
+            area: "",
+            posted_on: "",
+            submission_date: "",
+            status: "",
+            source: "",
+            salary: "",
+            notes: "",
+          })
+          setStatus("")
+        } else {
+          // If id exist means job already present in db then edit the previous job data
+          const response = await fetch("http://localhost:3000/edit-job", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...formData, id: jobId }),
+          })
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+          }
+          const json = await response.json()
+          console.log("Json data", json)
+          setIsDialogOpen(false)
         }
-
-        const json = await response.json()
-        console.log("Json data", json)
-
-        setIsDialogOpen(false)
-        setFormData({
-          company: "",
-          role: "",
-          area: "",
-          posted_on: "",
-          submission_date: "",
-          status: "",
-          source: "",
-          salary: "",
-          notes: "",
-        })
-        setStatus("")
       } catch (error) {
         console.error("Error submitting form:", error)
       }
@@ -157,7 +161,7 @@ const JobEntry = ({ setIsDialogOpen }) => {
               titleStyle="text-xl font-medium text-text"
               dropStyle="h-12 max-w-[350px] min-w-[300px] border-[1px] border-border bg-background_2 text-text p-2"
               mainBgStyle="mb-3"
-              selectedValue={status}
+              selectedValue={formData.status}
               onSelectChange={handleStatusChange}
               isInvalid={isInvalidStatus}
               errorMessage="You must select a job status."

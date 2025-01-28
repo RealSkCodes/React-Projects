@@ -7,6 +7,19 @@ import { JobsDataContext } from "../utils/AppContexts.js"
 import { JobSidebarToggleContext } from "../utils/AppContexts.js"
 
 const Body = () => {
+  // Value data for each form field in JobEntry
+  const [formData, setFormData] = useState({
+    company: "",
+    role: "",
+    area: "",
+    posted_on: "",
+    submission_date: "",
+    status: "",
+    source: "",
+    salary: "",
+    notes: "",
+  })
+
   const { jobs } = useContext(JobsDataContext)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const { isOpen, setIsOpen, jobData, setJobData } = useContext(JobSidebarToggleContext)
@@ -77,11 +90,11 @@ const Body = () => {
         ></div>
       )}
       <dialog className="z-30 rounded-lg" open={isDialogOpen}>
-        <JobEntry setIsDialogOpen={setIsDialogOpen} />
+        <JobEntry setIsDialogOpen={setIsDialogOpen} formData={formData} setFormData={setFormData} />
       </dialog>
-      <div className="flex justify-between items-center mb-3">
+      <div className="flex justify-between flex-wrap items-center mb-3">
         <h1 className="text-2xl text-text font-bold font-geist">Overview</h1>
-        <div className="flex items-center">
+        <div className="flex items-center flex-wrap">
           <Dropdown
             itemsArray={[
               "Posted (Newest)",
@@ -90,7 +103,7 @@ const Body = () => {
               "Applied (Oldest)",
             ]}
             placeholder={dateFilter || "Date"}
-            dropStyle="h-9 min-w-[150px] border border-border bg-background_2 text-text"
+            dropStyle="h-7 sm:h-9 min-w-[150px] border border-border bg-background_2 text-text"
             selectedValue={dateFilter}
             onSelectChange={handleDateFilterChange}
           />
@@ -107,12 +120,12 @@ const Body = () => {
               "Withdrawn",
             ]}
             placeholder={statusFilter || "Status"}
-            dropStyle="h-9 min-w-[150px] border border-border bg-background_2 text-text"
+            dropStyle="h-7 sm:h-9 min-w-[150px] mr-4 border border-border bg-background_2 text-text"
             selectedValue={statusFilter}
             onSelectChange={handleStatusFilterChange}
           />
           <Button
-            className="rounded-3xl px-4 py-2 bg-primary text-gray-100 font-semibold active:bg-secoundary ml-4"
+            className="rounded-3xl ml-2 px-4 py-2 mt-2 sm:mt-0 md:mt-1 bg-primary text-gray-100 font-semibold active:bg-secoundary"
             onClick={() => setIsDialogOpen(!isDialogOpen)}
           >
             <svg
