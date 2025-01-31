@@ -19,13 +19,19 @@ const JobsDataProvider = ({ children }) => {
   useEffect(() => {
     // Fetch jobs initially
     fetchJobsData()
-    // Listen for socket messages and trigger re-fetch
-    socket.on("job_added", () => {
+    const handleJobAdded = () => {
       console.log("Job added event received via socket")
       fetchJobsData()
-    })
+    }
+    const handleJobEdited = () => {
+      console.log("Job edited event received via socket")
+      fetchJobsData()
+    }
+    socket.on("job_added", handleJobAdded)
+    socket.on("job_edited", handleJobEdited)
     return () => {
-      socket.off("job_added")
+      socket.off("job_added", handleJobAdded)
+      socket.off("job_edited", handleJobEdited)
     }
   }, [])
 

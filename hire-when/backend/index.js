@@ -94,6 +94,7 @@ app.put("/edit-job", async (req, res) => {
   ]
 
   await pool.query(query, values)
+  io.emit("job_edited") // Emit event after successful editing job
   res.status(200).json({
     message: `Job with ID ${formData.id} updated successfully`,
   })
