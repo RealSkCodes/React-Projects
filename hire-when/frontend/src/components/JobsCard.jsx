@@ -8,7 +8,7 @@ const JobsCard = ({
   status,
   area,
   source,
-  posted_on,
+  posted_date,
   submission_date,
   notes,
   salary,
@@ -47,19 +47,19 @@ const JobsCard = ({
       <div className="grid grid-cols-2 gap-2 text-xs">
         <div>
           <p className="text-muted-foreground">Area</p>
-          <p>{area}</p>
+          <p className="overflow-hidden">{area}</p>
         </div>
         <div>
           <p className="text-muted-foreground">Source</p>
-          <p>{source}</p>
+          <p className="overflow-hidden">{source}</p>
         </div>
         <div>
           <p className="text-muted-foreground">Posted</p>
-          <p>{posted_on}</p>
+          <p className="overflow-hidden">{posted_date}</p>
         </div>
         <div>
           <p className="text-muted-foreground">Submission</p>
-          <p>{submission_date}</p>
+          <p className="overflow-hidden">{submission_date}</p>
         </div>
       </div>
     </div>

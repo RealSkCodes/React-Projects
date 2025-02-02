@@ -41,11 +41,16 @@ const Dropdown = ({
             {placeholder}
           </option>
         )}
-        {itemsArray.map((item) => (
-          <option key={item} className={twMerge("bg-background")} value={item}>
-            {item}
-          </option>
-        ))}
+        {itemsArray.map((item) => {
+          const truncatedText =
+            item.element.length > 50 ? item.element.substring(0, 47) + "..." : item.element
+
+          return (
+            <option key={item.id} className={twMerge("bg-background")} value={item.element}>
+              {truncatedText}
+            </option>
+          )
+        })}
       </select>
       {localInvalid && (
         <p className={twMerge("text-red-500")}>{errorMessage || "Please select an option."}</p>

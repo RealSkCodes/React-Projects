@@ -12,12 +12,14 @@ const Body = () => {
     company: "",
     role: "",
     area: "",
-    posted_on: "",
+    posted_date: "",
     submission_date: "",
     status: "",
     source: "",
     salary: "",
     notes: "",
+    interview_date: "",
+    todos: "",
   })
 
   const { jobs } = useContext(JobsDataContext)
@@ -54,9 +56,9 @@ const Body = () => {
     }
     // Sorting jobs based on the selected date filter
     if (value === "Posted (Newest)") {
-      sortedJobs.sort((a, b) => new Date(b.posted_on) - new Date(a.posted_on))
+      sortedJobs.sort((a, b) => new Date(b.posted_date) - new Date(a.posted_date))
     } else if (value === "Posted (Oldest)") {
-      sortedJobs.sort((a, b) => new Date(a.posted_on) - new Date(b.posted_on))
+      sortedJobs.sort((a, b) => new Date(a.posted_date) - new Date(b.posted_date))
     } else if (value === "Applied (Newest)") {
       sortedJobs.sort((a, b) => new Date(b.submission_date) - new Date(a.submission_date))
     } else if (value === "Applied (Oldest)") {
@@ -97,10 +99,10 @@ const Body = () => {
         <div className="flex items-center flex-wrap">
           <Dropdown
             itemsArray={[
-              "Posted (Newest)",
-              "Posted (Oldest)",
-              "Applied (Newest)",
-              "Applied (Oldest)",
+              { id: 1, element: "Posted (Newest)" },
+              { id: 2, element: "Posted (Oldest)" },
+              { id: 3, element: "Applied (Newest)" },
+              { id: 4, element: "Applied (Oldest)" },
             ]}
             placeholder={dateFilter || "Date"}
             dropStyle="h-7 sm:h-9 min-w-[150px] border border-border bg-background_2 text-text"
@@ -109,15 +111,15 @@ const Body = () => {
           />
           <Dropdown
             itemsArray={[
-              "All",
-              "Draft",
-              "Applied",
-              "Interview Scheduled",
-              "Interview Completed",
-              "Offer Received",
-              "Accepted",
-              "Rejected",
-              "Withdrawn",
+              { id: 1, element: "All" },
+              { id: 2, element: "Draft" },
+              { id: 3, element: "Applied" },
+              { id: 4, element: "Interview Scheduled" },
+              { id: 5, element: "Interview Completed" },
+              { id: 6, element: "Offer Received" },
+              { id: 7, element: "Accepted" },
+              { id: 8, element: "Rejected" },
+              { id: 9, element: "Withdrawn" },
             ]}
             placeholder={statusFilter || "Status"}
             dropStyle="h-7 sm:h-9 min-w-[150px] mr-4 border border-border bg-background_2 text-text"
@@ -148,7 +150,7 @@ const Body = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto h-[80vh]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-min overflow-y-auto h-[80vh]">
         {filteredJobs.map((detail) => (
           <JobsCard
             key={detail.id}
@@ -156,11 +158,13 @@ const Body = () => {
             company={detail.company}
             area={detail.area}
             role={detail.role}
-            posted_on={formatDate(detail.posted_on)}
+            posted_date={formatDate(detail.posted_date)}
             submission_date={formatDate(detail.submission_date)}
             status={detail.status}
             source={detail.source}
             notes={detail.notes}
+            interview_date={detail.interview_date}
+            todos={detail.todos}
             fullData={detail}
           />
         ))}

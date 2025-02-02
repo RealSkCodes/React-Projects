@@ -27,11 +27,17 @@ const JobsDataProvider = ({ children }) => {
       console.log("Job edited event received via socket")
       fetchJobsData()
     }
+    const handleTodosEdited = () => {
+      console.log("Todos edited event received via socket")
+      fetchJobsData()
+    }
     socket.on("job_added", handleJobAdded)
     socket.on("job_edited", handleJobEdited)
+    socket.on("todos_edited", handleTodosEdited)
     return () => {
       socket.off("job_added", handleJobAdded)
       socket.off("job_edited", handleJobEdited)
+      socket.off("todos_edited", handleTodosEdited)
     }
   }, [])
 
