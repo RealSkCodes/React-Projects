@@ -10,6 +10,8 @@ const JobSidebar = () => {
 
   // Set formData when jobData changes
   useEffect(() => {
+    if (!jobData) return
+
     setFormData({
       company: jobData.company || "",
       role: jobData.role || "",
@@ -49,7 +51,7 @@ const JobSidebar = () => {
     if (jobData.todos) {
       setEditedTodoList(jobData.todos)
     }
-  }, [jobData.todos])
+  }, [jobData?.todos])
   // Function for changing todo completed bool
   const handleTodoIsDone = (todoId) => {
     setEditedTodoList((prevTodoList) => {
