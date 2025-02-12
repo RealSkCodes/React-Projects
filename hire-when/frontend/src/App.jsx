@@ -3,7 +3,6 @@ import Header from "./components/Header.jsx"
 import Sidebar from "./components/Sidebar.jsx"
 import Body from "./components/Body.jsx"
 import LlmSidebar from "./components/LlmSidebar.jsx"
-import JobSidebar from "./components/JobSidebar.jsx"
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
         <Sidebar />
         <Outlet />
         <LlmSidebar />
-        <JobSidebar />
       </div>
     </>
   )
