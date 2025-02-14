@@ -21,7 +21,6 @@ const HireAI = () => {
     ...messages.user.map((msg) => ({ ...msg, type: "user" })),
     ...messages.bot.map((msg) => ({ ...msg, type: "bot" })),
   ].sort((a, b) => a.id - b.id)
-
   // Handle adding new user messages
   const handleClick = async () => {
     if (!text.trim()) return
@@ -40,7 +39,7 @@ const HireAI = () => {
     console.log(json)
     setMessages((prevMessages) => ({
       ...prevMessages,
-      bot: [...prevMessages.bot, { id: prevMessages.bot.length + 1, text: json.answer }],
+      bot: [...prevMessages.bot, { id: prevMessages.bot.length + 1, text: json }],
     }))
     setText("")
   }

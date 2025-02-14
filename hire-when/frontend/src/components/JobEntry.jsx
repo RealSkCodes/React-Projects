@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import InputField from "./InputField" // Make sure the path is correct
 import Dropdown from "./Dropdown"
 import Button from "./Button"
+import { JobSidebarToggleContext } from "../utils/AppContexts.js"
 
 const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
+  const { isOpen, setIsOpen, jobData, setJobData } = useContext(JobSidebarToggleContext)
   // Todo creation function
   const [todoText, setTodoText] = useState("")
   const [todoList, setTodoList] = useState([])
@@ -86,6 +88,7 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
           const json = await response.json()
           console.log("Json data", json)
           setIsDialogOpen(false)
+          setIsOpen(false)
         }
       } catch (error) {
         console.error("Error submitting form:", error)
