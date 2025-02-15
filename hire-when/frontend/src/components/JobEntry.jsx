@@ -52,7 +52,6 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData),
           })
-
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`)
           }
@@ -75,6 +74,11 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
             todos: [],
           })
           setStatus("")
+          const syncDataToPinecone = await fetch("http://localhost:3000/sync-pinecone", {
+            method: "POST",
+          })
+          const syncJson = await syncDataToPinecone.json()
+          console.log(syncJson.message)
         } else {
           // If id exist means job already present in db then edit the previous job data
           const response = await fetch("http://localhost:3000/edit-job", {
@@ -89,6 +93,11 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
           console.log("Json data", json)
           setIsDialogOpen(false)
           setIsOpen(false)
+          const syncDataToPinecone = await fetch("http://localhost:3000/sync-pinecone", {
+            method: "POST",
+          })
+          const syncJson = await syncDataToPinecone.json()
+          console.log(syncJson.message)
         }
       } catch (error) {
         console.error("Error submitting form:", error)

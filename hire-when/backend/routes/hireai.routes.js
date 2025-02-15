@@ -1,4 +1,5 @@
 import express from "express"
+import pool from "../config/db.config.js"
 import { io } from "../index.js"
 import { Pinecone } from "@pinecone-database/pinecone"
 import { GoogleGenerativeAI } from "@google/generative-ai"
@@ -87,7 +88,7 @@ hireaiRouter.post("/sync-pinecone", async (req, res) => {
     // Upsert vectors
     await index.upsert(vectors)
     console.log("Embeddings stored in Pinecone!")
-    res.send("Data sent to Pinecone!")
+    res.json({ message: "Data sent to Pinecone!" })
   } catch (err) {
     console.error(err)
     res.status(500).send("Error syncing data to Pinecone")
