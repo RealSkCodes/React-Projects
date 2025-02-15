@@ -1,5 +1,5 @@
 import SearchBar from "./SearchBar.jsx"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 
 const HireAI = () => {
   const [text, setText] = useState("")
@@ -23,37 +23,58 @@ const HireAI = () => {
   ].sort((a, b) => a.id - b.id)
   // Handle adding new user messages
   const handleClick = async () => {
-    if (!text.trim()) return
-    setMessages((prevMessages) => ({
-      ...prevMessages,
-      user: [...prevMessages.user, { id: prevMessages.user.length + 1, text: text }],
-    }))
-    const data = await fetch(`http://localhost:3000/hireai-post`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ user: text }),
-    })
-    const json = await data.json()
-    console.log(json)
-    setMessages((prevMessages) => ({
-      ...prevMessages,
-      bot: [...prevMessages.bot, { id: prevMessages.bot.length + 1, text: json }],
-    }))
-    setText("")
+    try {
+      if (!text.trim()) return
+      setMessages((prevMessages) => ({
+        ...prevMessages,
+        user: [...prevMessages.user, { id: prevMessages.user.length + 1, text: text }],
+      }))
+      const data = await fetch(`http://localhost:3000/hireai-post`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user: text }),
+      })
+      const json = await data.json()
+      console.log(json)
+      if (json.status === 429) {
+        setMessages((prevMessages) => ({
+          ...prevMessages,
+          bot: [...prevMessages.bot, { id: prevMessages.bot.length + 1, text: json.error }],
+        }))
+      } else {
+        setMessages((prevMessages) => ({
+          ...prevMessages,
+          bot: [...prevMessages.bot, { id: prevMessages.bot.length + 1, text: json.answer }],
+        }))
+      }
+      setText("")
+    } catch (err) {
+      console.log("Error: " + err)
+    }
   }
 
+  // Scroll HireAI chats logic
+  const messagesEndRef = useRef(null)
+  const aiSidebarRef = useRef(null)
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" })
+    }
+  }, [messages])
+
   return (
-    <div className="w-full h-screen flex flex-col pb-28 bg-background_2">
+    <div className="w-full h-screen flex flex-col pb-28 bg-background_2 overflow-y-auto">
       <h1 className="font-bold text-2xl text-gray-200 my-6 ml-6">HireAI</h1>
 
       {/* Main Content Section */}
       <div className="flex flex-col grow justify-between mx-6 bg-gray-700 rounded-lg overflow-hidden shadow-lg">
-        <div className="p-4 flex flex-col gap-4 overflow-y-auto">
+        <div ref={aiSidebarRef} className="p-4 flex flex-col gap-4 overflow-y-auto">
           {combinedMessages.map((message) => (
             <div
               key={`${message.type}-${message.id}`}
+              id={message.id}
               className={`p-4 max-w-[75%] rounded-lg text-sm font-medium shadow-md 
                 ${
                   message.type === "user"
@@ -65,6 +86,7 @@ const HireAI = () => {
               {message.text}
             </div>
           ))}
+          <div ref={messagesEndRef} />
         </div>
         <SearchBar
           containerStyle="p-3 bg-gray-700 rounded-lg shadow-lg"

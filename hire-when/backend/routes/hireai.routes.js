@@ -96,7 +96,6 @@ hireaiRouter.post("/sync-pinecone", async (req, res) => {
 
 // Hire AI logic
 hireaiRouter.post("/hireai-post", async (req, res) => {
-  // Extract the user prompt from the request body
   const userPrompt = req.body
   console.log("User Prompt:", userPrompt.user)
 
@@ -119,14 +118,25 @@ hireaiRouter.post("/hireai-post", async (req, res) => {
       const prompt = `Based on my job entries, ${userPrompt.user} \n${retrievedTexts}`
       const result = await model.generateContent(prompt)
       const response = await result.response
-      res.json("Answer: " + response.text())
+
+      res.json({ answer: response.text() })
       console.log("API Response:", response.text())
     } else {
-      res.send("No relevant jobs found.")
+      res.json({ answer: "No relevant jobs found." })
     }
   } catch (error) {
-    console.error("Error querying Hugging Face API:", error)
-    res.status(500).json({ error: "An error occurred while querying the API." })
+    if (error.status === 429) {
+      console.error("Rate limit exceeded:", error)
+      res.status(429).json({
+        status: 429,
+        error: "Rate limit exceeded. Please wait a few moments before trying again.",
+      })
+    } else {
+      console.error("Error querying Google AI API:", error)
+      res.status(500).json({
+        error: "An error occurred while querying the API. Please try again later.",
+      })
+    }
   }
 })
 
