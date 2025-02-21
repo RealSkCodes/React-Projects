@@ -3,22 +3,32 @@
 @tailwind utilities;
 
 body {
-  @apply bg-background;
-  @apply overflow-hidden;
+	@apply bg-background;
+	@apply overflow-hidden;
 }
 html {
-  @apply font-geist;
+	@apply font-geist;
 }
 ::-webkit-scrollbar {
-  width: 5px;
+	width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #1f2937;
+	background: #1f2937;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #4b5563;
-  border-radius: 4px;
+	background-color: #4b5563;
+	border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #6b7280;
+	background-color: #6b7280;
+}
+
+@layer components {
+	.autofill-text:-webkit-autofill {
+		-webkit-text-fill-color: aqua;
+	}
+	.autofill-text-input {
+		@apply autofill-text; /* set text colour (white) */
+		@apply autofill:shadow-[inset_0_0_0px_1000px_#0F4983]; /* Set background color to #191D36 */
+	}
 }
