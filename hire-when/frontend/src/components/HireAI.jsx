@@ -65,11 +65,11 @@ const HireAI = () => {
   }, [messages])
 
   return (
-    <div className="w-full h-screen flex flex-col pb-28 bg-background_2 overflow-y-auto">
+    <div className="w-full h-screen flex flex-col pb-10 bg-background_2 overflow-y-auto">
       <h1 className="font-bold text-2xl text-gray-200 my-6 ml-6">HireAI</h1>
 
       {/* Main Content Section */}
-      <div className="flex flex-col grow justify-between mx-6 bg-gray-700 rounded-lg overflow-hidden shadow-lg">
+      <div className="flex flex-col grow justify-between mx-6  bg-gradient-to-b from-background_3 to-background_2 border border-border rounded-lg overflow-hidden shadow-lg">
         <div ref={aiSidebarRef} className="p-4 flex flex-col gap-4 overflow-y-auto">
           {combinedMessages.map((message) => (
             <div
@@ -78,8 +78,8 @@ const HireAI = () => {
               className={`p-4 max-w-[75%] rounded-lg text-sm font-medium shadow-md 
                 ${
                   message.type === "user"
-                    ? "bg-blue-500 text-white self-end text-right"
-                    : "bg-gray-600 text-gray-100 self-start text-left"
+                    ? "bg-secondary text-white self-end text-right"
+                    : "bg-primary text-gray-100 self-start text-left"
                 }
               `}
             >
@@ -89,11 +89,11 @@ const HireAI = () => {
           <div ref={messagesEndRef} />
         </div>
         <SearchBar
-          containerStyle="p-3 bg-gray-700 rounded-lg shadow-lg"
-          inpStyle="w-full h-16 rounded-lg py-2 pt-1 text-gray-200 bg-gray-800 placeholder-gray-400 overflow-hidden border-none"
+          containerStyle="p-2 bg-background_2 border-t border-border rounded-lg shadow-lg"
+          inpStyle="w-full h-16 rounded-lg pt-1 text-gray-200 bg-gray-800 placeholder-gray-400 overflow-hidden border border-border"
           inpPlaceholder="Ask something..."
           btnName="Send"
-          btnStyle="ml-4 px-6 py-2 rounded-lg text-gray-200 bg-blue-500 hover:bg-blue-600 border-none"
+          btnStyle="px-3 py-2 rounded-lg text-gray-200 bg-primary hover:bg-blue-600 border-none"
           onInpChange={(e) => setText(e.target.value)}
           inpValue={text}
           onBtnClick={handleClick}

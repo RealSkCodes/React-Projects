@@ -85,7 +85,7 @@ const JobSidebar = () => {
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold">Job Overview</h1>
             <Button
-              className="text-2xl text-text hover:text-secoundary bg-background text-right"
+              className="text-2xl text-text hover:text-secondary bg-background text-right"
               onClick={() => setIsOpen(false)}
             >
               ❌
@@ -174,7 +174,7 @@ const JobSidebar = () => {
                     ))}
                 </div>
                 <Button
-                  className="px-3 py-2 mt-3 bg-secoundary text-black border-none font-medium"
+                  className="px-3 py-2 mt-3 bg-secondary text-black border-none font-medium"
                   onClick={handleTodolistSave}
                 >
                   Save

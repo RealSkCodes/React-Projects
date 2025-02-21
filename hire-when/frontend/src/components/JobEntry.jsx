@@ -9,6 +9,7 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
   // Todo creation function
   const [todoText, setTodoText] = useState("")
   const [todoList, setTodoList] = useState([])
+
   useEffect(() => {
     // Load todos from formData on component mount (for editing).  Parse if it's a string.
     if (formData.todos) {
@@ -17,6 +18,7 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
       setTodoList(parsedTodos)
     }
   }, [formData.todos])
+
   const handleTodoInputChange = () => {
     if (todoText.trim() === "") return
     const newTodo = { id: todoList.length + 1, element: todoText.trim(), isdone: false }
@@ -29,11 +31,13 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
   // Job application Status function
   const [status, setStatus] = useState("")
   const [isInvalidStatus, setIsInvalidStatus] = useState(false)
+
   const handleStatusChange = (value) => {
     setIsInvalidStatus(false)
     setStatus(value)
     setFormData({ ...formData, status: value })
   }
+
   const handleSubmit = async (event) => {
     event.preventDefault()
 
@@ -106,29 +110,30 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
       console.log("Form is invalid")
     }
   }
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-700/50">
-      <div className="flex flex-col items-center min-w-min bg-background rounded-lg shadow-lg p-5">
-        <div className="flex justify-between w-full px-4 py-3 rounded-lg bg-background">
-          <h1 className="text-2xl font-bold text-gray-100">Job Entry Form</h1>
-          <Button
-            className="text-2xl text-text hover:text-secoundary bg-background text-right"
-            onClick={() => setIsDialogOpen(false)}
-          >
-            ❌
-          </Button>
-        </div>
+      <div className="flex flex-col justify-center items-center min-w-[70vw] min-h-[80vh] bg-background rounded-lg shadow-lg p-5 relative">
+        <Button
+          className="absolute top-4 right-4 text-2xl text-text hover:text-secondary bg-background"
+          onClick={() => setIsDialogOpen(false)}
+        >
+          ❌
+        </Button>
+        <h1 className="text-2xl font-medium text-accent border-b-2 border-border px-3">
+          Job Entry Form
+        </h1>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-center justify-center p-4 bg-background rounded-lg"
+          className="flex flex-col items-center justify-center p-4 rounded-lg"
         >
-          <div className="grid gap-4 p-6 mx-4 bg-background_2 border-1 border-border rounded-2xl max-w-[1000px] lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3">
+          <div className="grid gap-4 p-6 mx-4 rounded-2xl max-w-[1000px] lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3">
             <InputField
               title="Company"
               inpType="text"
               inpPlaceholder="Enter company name here..."
-              inpStyle="h-12 max-w-[350px] min-w-[300px] border-[1px] border-border bg-background_2 text-text"
-              titleStyle="text-xl font-medium text-text"
+              inpStyle="h-12 max-w-[350px] min-w-[300px] rounded-none border-b-2 border-border bg-background_2 text-text focus:border-red-400"
+              titleStyle="text-lg font-normal text-accent"
               mainBgStyle="mb-3"
               inpValue={formData.company}
               onInpChange={(e) => setFormData({ ...formData, company: e.target.value })}
@@ -139,8 +144,8 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
               title="Role"
               inpType="text"
               inpPlaceholder="Enter role here..."
-              inpStyle="h-12 max-w-[350px] min-w-[300px] border-[1px] border-border bg-background_2 text-text"
-              titleStyle="text-xl font-medium text-text"
+              inpStyle="h-12 max-w-[350px] min-w-[300px] rounded-none border-b-2 border-border bg-background_2 text-text focus:border-red-400"
+              titleStyle="text-lg font-normal text-accent"
               mainBgStyle="mb-3"
               inpValue={formData.role}
               onInpChange={(e) => setFormData({ ...formData, role: e.target.value })}
@@ -151,8 +156,8 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
               title="Area"
               inpType="text"
               inpPlaceholder="Enter location name here..."
-              inpStyle="h-12 max-w-[350px] min-w-[300px] border-[1px] border-border bg-background_2 text-text"
-              titleStyle="text-xl font-medium text-text"
+              inpStyle="h-12 max-w-[350px] min-w-[300px] rounded-none border-b-2 border-border bg-background_2 text-text focus:border-red-400"
+              titleStyle="text-lg font-normal text-accent"
               mainBgStyle="mb-3"
               inpValue={formData.area}
               onInpChange={(e) => setFormData({ ...formData, area: e.target.value })}
@@ -162,8 +167,8 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
             <InputField
               title="Posted On"
               inpType="date"
-              inpStyle="h-12 max-w-[350px] min-w-[300px] border-[1px] border-border bg-background_2 text-text"
-              titleStyle="text-xl font-medium text-text"
+              inpStyle="h-12 max-w-[350px] min-w-[300px] rounded-none border-b-2 border-border bg-background_2 text-text focus:border-red-400"
+              titleStyle="text-lg font-normal text-accent"
               mainBgStyle="mb-3"
               inpValue={formData.posted_date}
               onInpChange={(e) => setFormData({ ...formData, posted_date: e.target.value })}
@@ -172,8 +177,8 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
             <InputField
               title="Submission Date"
               inpType="date"
-              inpStyle="h-12 max-w-[350px] min-w-[300px] border-[1px] border-border bg-background_2 text-text"
-              titleStyle="text-xl font-medium text-text"
+              inpStyle="h-12 max-w-[350px] min-w-[300px] rounded-none border-b-2 border-border bg-background_2 text-text focus:border-red-400"
+              titleStyle="text-lg font-normal text-accent"
               mainBgStyle="mb-3"
               inpValue={formData.submission_date}
               onInpChange={(e) => setFormData({ ...formData, submission_date: e.target.value })}
@@ -191,8 +196,8 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
                 { id: 8, element: "Withdrawn" },
               ]}
               title="Status"
-              titleStyle="text-xl font-medium text-text"
-              dropStyle="h-12 max-w-[350px] min-w-[300px] border-[1px] border-border bg-background_2 text-text p-2"
+              titleStyle="text-lg font-normal text-accent"
+              dropStyle="h-12 max-w-[350px] min-w-[300px] border-b-2 border-border rounded-none text-text p-2 focus:border-red-400"
               mainBgStyle="mb-3"
               selectedValue={formData.status}
               onSelectChange={handleStatusChange}
@@ -203,8 +208,8 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
               title="Source"
               inpType="url"
               inpPlaceholder="Enter reference link here..."
-              inpStyle="h-12 max-w-[350px] min-w-[300px] border-[1px] border-border bg-background_2 text-text"
-              titleStyle="text-xl font-medium text-text"
+              inpStyle="h-12 max-w-[350px] min-w-[300px] rounded-none border-b-2 border-border bg-background_2 text-text focus:border-red-400"
+              titleStyle="text-lg font-normal text-accent"
               mainBgStyle="mb-3"
               inpValue={formData.source}
               onInpChange={(e) => setFormData({ ...formData, source: e.target.value })}
@@ -214,8 +219,8 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
               title="Salary"
               inpType="text"
               inpPlaceholder="Enter salary here..."
-              inpStyle="h-12 max-w-[350px] min-w-[300px] border-[1px] border-border bg-background_2 text-text"
-              titleStyle="text-xl font-medium text-text"
+              inpStyle="h-12 max-w-[350px] min-w-[300px] rounded-none border-b-2 border-border bg-background_2 text-text focus:border-red-400"
+              titleStyle="text-lg font-normal text-accent"
               mainBgStyle="mb-3"
               inpValue={formData.salary}
               onInpChange={(e) => setFormData({ ...formData, salary: e.target.value })}
@@ -226,8 +231,8 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
               title="Notes"
               inpType="text"
               inpPlaceholder="Enter notes here..."
-              inpStyle="h-12 max-w-[350px] min-w-[300px] border-[1px] border-border bg-background_2 text-text"
-              titleStyle="text-xl font-medium text-text"
+              inpStyle="h-12 max-w-[350px] min-w-[300px] rounded-none border-b-2 border-border bg-background_2 text-text focus:border-red-400"
+              titleStyle="text-lg font-normal text-accent"
               mainBgStyle="mb-3"
               inpValue={formData.notes}
               onInpChange={(e) => setFormData({ ...formData, notes: e.target.value })}
@@ -238,8 +243,8 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
                 <InputField
                   title="Interview Date"
                   inpType="date"
-                  inpStyle="h-12 max-w-[350px] min-w-[300px] border-[1px] border-border bg-background_2 text-text"
-                  titleStyle="text-xl font-medium text-text"
+                  inpStyle="h-12 max-w-[350px] min-w-[300px] rounded-none border-b-2 border-border bg-background_2 text-text focus:border-red-400"
+                  titleStyle="text-lg font-normal text-accent"
                   mainBgStyle="mb-3"
                   inpValue={formData.interview_date === null ? "" : formData.interview_date}
                   onInpChange={(e) =>
@@ -255,14 +260,14 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
                 <div className="flex items-center pb-3">
                   <InputField
                     title="Todos"
-                    titleStyle="text-xl font-medium text-text"
-                    inpStyle="h-12 max-w-[350px] min-w-[260px] border-[1px] border-border bg-background_2 text-text p-2 pr-6"
+                    titleStyle="text-lg font-normal text-accent"
+                    inpStyle="h-12 max-w-[350px] min-w-[300px] rounded-none border-b-2 border-border bg-background_2 text-text focus:border-red-400"
                     inpValue={todoText}
                     onInpChange={(e) => setTodoText(e.target.value)}
                   />
                   <Dropdown
                     itemsArray={todoList}
-                    titleStyle="text-xl font-medium text-text"
+                    titleStyle="text-lg font-normal text-accent"
                     dropStyle="h-12 w-[10px] border-[1px] border-border bg-background_2 text-text p-2"
                     mainBgStyle="pt-7 ml-[-34px]"
                   />
@@ -292,7 +297,7 @@ const JobEntry = ({ setIsDialogOpen, formData, setFormData, jobId }) => {
           </div>
           <Button
             type="submit"
-            className="px-6 py-3 mt-3 text-gray-100 font-semibold rounded-lg shadow-md bg-primary active:bg-secoundary"
+            className="px-6 py-3 mt-3 text-gray-100 font-semibold rounded-lg shadow-md bg-gradient-to-br from-primary to-secondary active:from-secondary active:to-primary"
           >
             Submit
           </Button>

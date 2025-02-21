@@ -29,7 +29,7 @@ const Dropdown = ({
       <span className={twMerge("mx-2 mb-1 text-base font-semibold", titleStyle)}>{title}</span>
       <select
         className={twMerge(
-          "rounded-md mx-2 my-1 px-2 border-2 bg-transparent outline-none",
+          "rounded-md mx-2 my-1 px-2 bg-transparent outline-none",
           localInvalid ? "border-red-500" : "border-black",
           dropStyle
         )}
