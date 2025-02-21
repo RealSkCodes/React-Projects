@@ -6,8 +6,11 @@ import { useState, useEffect, useContext } from "react"
 import { JobsDataContext } from "../utils/AppContexts.js"
 import { JobSidebarToggleContext } from "../utils/AppContexts.js"
 import JobSidebar from "./JobSidebar.jsx"
+import { HamburgerMenuContext } from "../utils/AppContexts.js"
 
 const Body = () => {
+  const { isSidebarOpen, setIsSidebarOpenToggle } = useContext(HamburgerMenuContext)
+
   // Value data for each form field in JobEntry
   const [formData, setFormData] = useState({
     company: "",
@@ -98,7 +101,15 @@ const Body = () => {
         <JobSidebar />
 
         <div className="flex justify-between flex-wrap items-center mb-3">
-          <h1 className="text-2xl text-text font-bold font-geist">Overview</h1>
+          <div className="flex justify-center items-center gap-3">
+            <img
+              onClick={() => setIsSidebarOpenToggle()}
+              className="max-w-5 sm:max-w-7 rounded-md bg-black cursor-pointer"
+              src="./assets/images/icons8-menu-120.png"
+              alt="hamburger button"
+            />
+            <h1 className="text-2xl text-text font-bold font-geist">Overview</h1>
+          </div>
           <div className="flex items-center flex-wrap">
             <Dropdown
               itemsArray={[
@@ -130,7 +141,7 @@ const Body = () => {
               onSelectChange={handleStatusFilterChange}
             />
             <Button
-              className="rounded-3xl ml-2 px-4 py-2 mt-2 sm:mt-0 md:mt-1 bg-primary text-gray-100 font-semibold active:bg-secoundary"
+              className="rounded-3xl ml-2 px-4 py-2 mt-2 sm:mt-0 md:mt-1 bg-primary text-gray-100 font-semibold active:bg-secondary"
               onClick={() => setIsDialogOpen(!isDialogOpen)}
             >
               <svg
@@ -154,7 +165,7 @@ const Body = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-min overflow-y-auto h-[80vh]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-min overflow-y-auto h-[86vh]">
         {filteredJobs.map((detail) => (
           <JobsCard
             key={detail.id}

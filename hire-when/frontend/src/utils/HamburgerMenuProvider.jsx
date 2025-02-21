@@ -2,12 +2,12 @@ import React, { useState } from "react"
 import { HamburgerMenuContext } from "./AppContexts.js"
 
 const HamburgerMenuProvider = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
-  const toggleMenu = () => setIsOpen((prev) => !prev)
+  const setIsSidebarOpenToggle = () => setIsSidebarOpen((prev) => !prev)
 
   return (
-    <HamburgerMenuContext.Provider value={{ isOpen, toggleMenu }}>
+    <HamburgerMenuContext.Provider value={{ isSidebarOpen, setIsSidebarOpenToggle }}>
       {children}
     </HamburgerMenuContext.Provider>
   )
