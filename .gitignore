@@ -1,0 +1,13 @@
+# Ignore Neovim session files
+.session.vim
+*.swp
+*.swo
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Node.js dependencies (if not already in each project)
+node_modules/
+dist/
+
